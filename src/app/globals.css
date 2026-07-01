@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f4f2ed;
+  --foreground: #15151a;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #d4ff3d;
+  color: #15151a;
+}
+
+/* Perforated "ticket" edge — the signature IQFIT47 motif used on
+   product cards, the cart summary and order tracking stubs. */
+.ticket-notch {
+  position: relative;
+}
+.ticket-notch::before,
+.ticket-notch::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: var(--stub-bg, #f4f2ed);
+  border-radius: 999px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.ticket-notch::before {
+  left: -9px;
+}
+.ticket-notch::after {
+  right: -9px;
+}
+
+.perforated {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 6px,
+    currentColor 6px,
+    currentColor 12px
+  );
+  background-size: 2px 14px;
+  background-repeat: repeat-y;
+  opacity: 0.25;
+}
+
+.text-outline {
+  -webkit-text-stroke: 1.5px currentColor;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* thin, brand-matched scrollbar for horizontal shelves */
+.shelf-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.shelf-scroll::-webkit-scrollbar-thumb {
+  background: #15151a;
+  border-radius: 999px;
+}
+.shelf-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(21 21 26 / 0.15);
+  background: white;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.input:focus {
+  border-color: #ff5a1f;
+}
+.input::placeholder {
+  color: rgb(21 21 26 / 0.3);
+}
