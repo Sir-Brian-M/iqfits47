@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 
 function StarIcon({ className, size = 14 }: { className?: string; size?: number }) {
@@ -20,11 +21,11 @@ function StarIcon({ className, size = 14 }: { className?: string; size?: number 
   );
 }
 import { getProductBySlug, getRelatedProducts, getDbProducts } from "@/lib/data/products";
-import dynamic from "next/dynamic";
+import nextDynamic from "next/dynamic";
 
-const ProductGallery = dynamic(() => import("@/components/product/product-gallery").then((m) => m.ProductGallery));
-const AddToCartForm = dynamic(() => import("@/components/product/add-to-cart-form").then((m) => m.AddToCartForm));
-const ProductCard = dynamic(() => import("@/components/product/product-card").then((m) => m.ProductCard));
+const ProductGallery = nextDynamic(() => import("@/components/product/product-gallery").then((m) => m.ProductGallery));
+const AddToCartForm = nextDynamic(() => import("@/components/product/add-to-cart-form").then((m) => m.AddToCartForm));
+const ProductCard = nextDynamic(() => import("@/components/product/product-card").then((m) => m.ProductCard));
 import { formatKES } from "@/lib/utils";
 
 export async function generateStaticParams() {

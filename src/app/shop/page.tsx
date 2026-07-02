@@ -1,10 +1,11 @@
 import { Suspense } from "react";
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { getDbProducts, categories } from "@/lib/data/products";
-import dynamic from "next/dynamic";
+import nextDynamic from "next/dynamic";
 
-const ProductCard = dynamic(() => import("@/components/product/product-card").then((m) => m.ProductCard));
-const ShopFilters = dynamic(() => import("@/components/product/shop-filters").then((m) => m.ShopFilters));
+const ProductCard = nextDynamic(() => import("@/components/product/product-card").then((m) => m.ProductCard));
+const ShopFilters = nextDynamic(() => import("@/components/product/shop-filters").then((m) => m.ShopFilters));
 import { Product } from "@/lib/types";
 
 export const metadata: Metadata = {
