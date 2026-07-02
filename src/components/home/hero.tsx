@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { KenyaMapSlider } from "./kenya-map-slider";
 
 export function Hero() {
   return (
@@ -71,19 +72,9 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 lg:col-span-5"
+          className="relative z-10 lg:col-span-5 w-full flex items-center justify-center py-6"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl lg:aspect-auto lg:h-[38rem] lg:rounded-none">
-            <Image
-              src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1200&q=85"
-              alt="Featured sneaker from the current IQFIT47 drop"
-              fill
-              priority
-              sizes="(max-width: 1024px) 90vw, 40vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent lg:bg-gradient-to-l" />
-          </div>
+          <KenyaMapSlider />
         </motion.div>
       </div>
     </section>
