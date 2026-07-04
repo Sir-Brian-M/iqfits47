@@ -5,10 +5,17 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Product } from "@/lib/types";
 import { formatKES } from "@/lib/utils";
+import { Heart, GitCompare } from "lucide-react";
+import { useFeatures } from "@/lib/store/features";
+import { cn } from "@/lib/utils";
 
 export function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
   const totalStock = product.sizes.reduce((sum, s) => sum + s.stock, 0);
   const lowStock = totalStock > 0 && totalStock <= 6;
+  const { wishlist, toggleWishlist, compareIds, toggleCompare } = useFeatures();
+  
+  const isWishlisted = wishlist.includes(product.id);
+  const isCompared = compareIds.includes(product.id);
 
   return (
     <motion.div
@@ -36,7 +43,8 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
             />
           )}
 
-          <div className="absolute left-3 top-3 flex flex-col gap-1.5">
+          {/* Badges */}
+          <div className="absolute left-3 top-3 flex flex-col gap-1.5 z-10">
             {product.isNewDrop && (
               <span className="rounded-full bg-ink px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-stone-50">
                 {product.dropNumber}
@@ -47,6 +55,40 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
                 Sale
               </span>
             )}
+          </div>
+
+          {/* Actions */}
+          <div className="absolute right-3 top-3 flex flex-col gap-2 z-10">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleWishlist(product.id);
+              }}
+              className="rounded-full bg-stone-50/90 p-2 shadow-sm transition hover:bg-stone-50 hover:scale-110 active:scale-95 text-ink/75"
+              aria-label="Add to wishlist"
+            >
+              <Heart
+                size={16}
+                className={cn("transition-colors", isWishlisted && "fill-hazard text-hazard")}
+              />
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleCompare(product.id);
+              }}
+              className={cn(
+                "rounded-full p-2 shadow-sm transition hover:scale-110 active:scale-95",
+                isCompared
+                  ? "bg-hazard text-white"
+                  : "bg-stone-50/90 text-ink/75 hover:bg-stone-50"
+              )}
+              aria-label="Compare product"
+            >
+              <GitCompare size={16} />
+            </button>
           </div>
 
           {lowStock && (
@@ -83,3 +125,4 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
     </motion.div>
   );
 }
+

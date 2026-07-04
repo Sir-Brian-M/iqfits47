@@ -1,4 +1,4 @@
-﻿import { notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 
@@ -26,6 +26,9 @@ import nextDynamic from "next/dynamic";
 const ProductGallery = nextDynamic(() => import("@/components/product/product-gallery").then((m) => m.ProductGallery));
 const AddToCartForm = nextDynamic(() => import("@/components/product/add-to-cart-form").then((m) => m.AddToCartForm));
 const ProductCard = nextDynamic(() => import("@/components/product/product-card").then((m) => m.ProductCard));
+const RecentlyViewedTracker = nextDynamic(() => import("@/components/product/recently-viewed-tracker").then((m) => m.RecentlyViewedTracker));
+const RecentlyViewedShelf = nextDynamic(() => import("@/components/product/recently-viewed-shelf").then((m) => m.RecentlyViewedShelf));
+const OutfitBuilder = nextDynamic(() => import("@/components/product/outfit-builder").then((m) => m.OutfitBuilder));
 import { formatKES } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -111,6 +114,7 @@ export default async function ProductPage({
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <RecentlyViewedTracker slug={product.slug} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -180,6 +184,8 @@ export default async function ProductPage({
             Kiambu in 1–2 days, nationwide in 2–4 days. Track your order
             anytime with your order number.
           </div>
+
+          <OutfitBuilder currentProduct={product} />
         </div>
       </div>
 
@@ -193,6 +199,8 @@ export default async function ProductPage({
           </div>
         </section>
       )}
+
+      <RecentlyViewedShelf excludeId={product.id} />
     </div>
   );
 }

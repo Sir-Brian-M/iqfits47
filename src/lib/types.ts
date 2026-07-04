@@ -23,6 +23,7 @@ export interface Product {
   dropNumber?: string; // e.g. "DROP 014" — ties into the ticket motif
   rating: number;
   reviewCount: number;
+  fitRating?: "True to size" | "Runs small" | "Runs large";
 }
 
 export interface CartLine {

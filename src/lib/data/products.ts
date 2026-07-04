@@ -899,6 +899,18 @@ export const products: Product[] = [
   },
 ];
 
+export function getFitRating(id: string): "True to size" | "Runs small" | "Runs large" {
+  const hash = id.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  if (hash % 3 === 0) return "Runs small";
+  if (hash % 3 === 1) return "Runs large";
+  return "True to size";
+}
+
+// Dynamically inject fitRating to static products
+products.forEach((p) => {
+  p.fitRating = getFitRating(p.id);
+});
+
 function mapDbProductToProduct(row: any): Product {
   return {
     id: row.id,
@@ -918,6 +930,7 @@ function mapDbProductToProduct(row: any): Product {
     dropNumber: row.drop_number ?? undefined,
     rating: Number(row.rating ?? 5.0),
     reviewCount: row.review_count ?? 0,
+    fitRating: row.fit_rating || getFitRating(row.id),
   };
 }
 

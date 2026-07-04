@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShoppingBag, Search, Package } from "lucide-react";
+import { Menu, X, ShoppingBag, Search, Package, Heart } from "lucide-react";
 import { useCart } from "@/lib/store/cart";
+import { useFeatures } from "@/lib/store/features";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/lib/supabase/client";
 
@@ -19,6 +20,7 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const openCart = useCart((s) => s.open);
   const count = useCart((s) => s.count());
+  const wishlistCount = useFeatures((s) => s.wishlist.length);
 
   const [announcements, setAnnouncements] = useState<string[]>([
     "FREE DELIVERY IN NAIROBI & KIAMBU ON ORDERS OVER KES 15,000",
@@ -99,6 +101,18 @@ export function Navbar() {
           >
             <Package size={20} />
           </Link>
+          <Link
+            href="/wishlist"
+            className="relative rounded-full p-2 hover:bg-ink/5"
+            aria-label="Wishlist"
+          >
+            <Heart size={20} className={cn(wishlistCount > 0 && "fill-hazard text-hazard")} />
+            {wishlistCount > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-hazard text-[10px] font-bold text-white">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
           <button
             onClick={openCart}
             className="relative rounded-full p-2 hover:bg-ink/5"
@@ -152,9 +166,16 @@ export function Navbar() {
                   </Link>
                 ))}
                 <Link
-                  href="/track-order"
+                  href="/wishlist"
                   onClick={() => setMenuOpen(false)}
                   className="mt-6 flex items-center gap-2 font-mono text-sm uppercase tracking-wide text-ink/60"
+                >
+                  <Heart size={16} /> Wishlist
+                </Link>
+                <Link
+                  href="/track-order"
+                  onClick={() => setMenuOpen(false)}
+                  className="mt-3 flex items-center gap-2 font-mono text-sm uppercase tracking-wide text-ink/60"
                 >
                   <Package size={16} /> Track an order
                 </Link>
