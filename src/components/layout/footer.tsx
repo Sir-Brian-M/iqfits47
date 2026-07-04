@@ -11,7 +11,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <span className="font-display text-3xl tracking-tight">
-              IQFIT<span className="text-hazard">47</span>
+              IQFITS-<span className="text-hazard">47</span>
             </span>
             <p className="mt-4 max-w-sm text-sm text-stone-50/60">
               Authentic kicks, designer apparel and accessories, sourced for
@@ -91,7 +91,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-stone-50/10 pt-6 text-xs text-stone-50/40 sm:flex-row">
-          <span>© {new Date().getFullYear()} IQFIT47. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} IQFITS-47. All rights reserved.</span>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <Link href="/policies/returns" className="hover:text-stone-50 transition-colors">Returns</Link>
             <Link href="/policies/privacy" className="hover:text-stone-50 transition-colors">Privacy</Link>

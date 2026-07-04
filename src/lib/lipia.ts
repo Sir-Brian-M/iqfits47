@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Lipia Online payment integration
  * ---------------------------------
  * Docs: https://lipia-online-docs.vercel.app/
@@ -23,7 +23,7 @@ const LIPIA_API_KEY = process.env.LIPIA_API_KEY ?? "";
 export interface StkPushParams {
   phone: string; // normalized 2547XXXXXXXX / 2541XXXXXXXX
   amount: number;
-  accountReference: string; // we pass the IQFIT47 order number here
+  accountReference: string; // we pass the IQFITS-47 order number here
   transactionDesc?: string;
 }
 
@@ -58,7 +58,7 @@ export async function initiateStkPush(
 ): Promise<StkPushResult> {
   assertConfigured();
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://iqfits47.top";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://iqfits-47.top";
   const callbackUrl = `${siteUrl}/api/payments/callback`;
 
   const res = await fetch(`${LIPIA_BASE_URL}/payments/stk-push`, {
@@ -73,7 +73,7 @@ export async function initiateStkPush(
       external_reference: params.accountReference,
       callback_url: callbackUrl,
       metadata: {
-        transaction_desc: params.transactionDesc ?? "IQFIT47 order",
+        transaction_desc: params.transactionDesc ?? "IQFITS-47 order",
       }
     }),
     cache: "no-store",

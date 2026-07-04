@@ -1,9 +1,9 @@
-import { Order } from "@/lib/types";
+﻿import { Order } from "@/lib/types";
 import { formatKES } from "@/lib/utils";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
-const MAIL_SENDER = "IQFIT47 <notifications@iqfits47.top>";
-const ADMIN_EMAIL = "notifications@iqfits47.top"; // Notify admin here
+const MAIL_SENDER = "IQFITS-47 <notifications@iqfits-47.top>";
+const ADMIN_EMAIL = "notifications@iqfits-47.top"; // Notify admin here
 
 interface SendEmailParams {
   to: string;
@@ -72,7 +72,7 @@ export async function sendOrderConfirmationEmail(order: Order): Promise<boolean>
   const html = `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #1c1917; background-color: #fafaf9;">
       <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="font-size: 28px; margin: 0; letter-spacing: -0.05em; text-transform: uppercase;">IQFIT47</h1>
+        <h1 style="font-size: 28px; margin: 0; letter-spacing: -0.05em; text-transform: uppercase;">IQFITS-47</h1>
         <p style="font-size: 14px; color: #ef4444; margin: 5px 0 0 0; font-family: monospace; letter-spacing: 0.1em;">ORDER CONFIRMED</p>
       </div>
 
@@ -107,7 +107,7 @@ export async function sendOrderConfirmationEmail(order: Order): Promise<boolean>
       </div>
 
       <div style="text-align: center; margin-top: 30px; font-size: 12px; color: #78716c;">
-        <p>IQFIT47 Store · Nairobi, Kenya</p>
+        <p>IQFITS-47 Store · Nairobi, Kenya</p>
         <p>If you have any questions, contact us on WhatsApp at +254716672878</p>
       </div>
     </div>
@@ -120,7 +120,7 @@ export async function sendOrderConfirmationEmail(order: Order): Promise<boolean>
 
   return sendEmail({
     to: order.delivery.email,
-    subject: `Order Confirmation — ${order.orderNumber} [IQFIT47]`,
+    subject: `Order Confirmation — ${order.orderNumber} [IQFITS-47]`,
     html,
   });
 }
@@ -158,7 +158,7 @@ export async function sendAdminNewOrderEmail(order: Order): Promise<boolean> {
       </p>
 
       <p style="margin-top: 30px;">
-        <a href="https://iqfits47.top/admin" style="background-color: #1c1917; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-block;">
+        <a href="https://iqfits-47.top/admin" style="background-color: #1c1917; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-block;">
           Go to Admin Console
         </a>
       </p>
@@ -189,7 +189,7 @@ export async function sendOrderStatusUpdateEmail(order: Order, note?: string): P
   const html = `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #1c1917; background-color: #fafaf9;">
       <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="font-size: 28px; margin: 0; letter-spacing: -0.05em; text-transform: uppercase;">IQFIT47</h1>
+        <h1 style="font-size: 28px; margin: 0; letter-spacing: -0.05em; text-transform: uppercase;">IQFITS-47</h1>
         <p style="font-size: 14px; color: #ef4444; margin: 5px 0 0 0; font-family: monospace; letter-spacing: 0.1em;">ORDER UPDATE</p>
       </div>
 
@@ -214,14 +214,14 @@ export async function sendOrderStatusUpdateEmail(order: Order, note?: string): P
         <p>You can track your order live on our website using your order number.</p>
         
         <p style="margin-top: 24px;">
-          <a href="https://iqfits47.top/track?order=${order.orderNumber}" style="background-color: #1c1917; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-block; font-size: 14px;">
+          <a href="https://iqfits-47.top/track?order=${order.orderNumber}" style="background-color: #1c1917; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-block; font-size: 14px;">
             Track Your Order
           </a>
         </p>
       </div>
 
       <div style="text-align: center; margin-top: 30px; font-size: 12px; color: #78716c;">
-        <p>IQFIT47 Store · Nairobi, Kenya</p>
+        <p>IQFITS-47 Store · Nairobi, Kenya</p>
         <p>If you have any questions, contact us on WhatsApp at +254716672878</p>
       </div>
     </div>
@@ -234,7 +234,7 @@ export async function sendOrderStatusUpdateEmail(order: Order, note?: string): P
 
   return sendEmail({
     to: order.delivery.email,
-    subject: `Order Update: ${currentStatusLabel} — ${order.orderNumber} [IQFIT47]`,
+    subject: `Order Update: ${currentStatusLabel} — ${order.orderNumber} [IQFITS-47]`,
     html,
   });
 }

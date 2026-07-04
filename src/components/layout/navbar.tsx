@@ -73,7 +73,7 @@ export function Navbar() {
         </button>
 
         <Link href="/" className="flex items-baseline gap-1 font-display text-2xl tracking-tight">
-          IQFIT<span className="text-hazard">47</span>
+          IQFITS-<span className="text-hazard">47</span>
         </Link>
 
         <nav className="hidden items-center gap-8 font-display text-sm uppercase tracking-wide lg:flex">

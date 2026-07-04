@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,7 +12,7 @@ import type { Rank } from "@/lib/affiliate";
 import { ReferralNetworkViz } from "@/components/home/referral-network-viz";
 
 // ── Constants ────────────────────────────────────────────────────────────────
-const SITE_URL = "https://iqfits47.top";
+const SITE_URL = "https://iqfits-47.top";
 
 const TIER_META: Record<string, { icon: React.ReactNode; gradient: string; bg: string; text: string }> = {
   none:     { icon: <Star size={14} />,   gradient: "from-stone-400 to-stone-500",   bg: "bg-stone-100",   text: "text-stone-500" },
@@ -116,8 +116,8 @@ export default function ReferralPage() {
     if (!referralLink) return;
     if (navigator.share) {
       await navigator.share({
-        title: "IQFIT47 — Kicks & Designer Fits",
-        text: "Shop authentic kicks and streetwear at IQFIT47 — get 5% off your first order with my link!",
+        title: "IQFITS-47 — Kicks & Designer Fits",
+        text: "Shop authentic kicks and streetwear at IQFITS-47 — get 5% off your first order with my link!",
         url: referralLink,
       });
     } else {
@@ -167,7 +167,7 @@ export default function ReferralPage() {
               the Bag.
             </h1>
             <p className="mt-6 max-w-md text-base text-stone-50/60">
-              Refer friends to IQFIT47. They get <strong className="text-stone-50">5% off</strong> their first order — you earn <strong className="text-stone-50">KES 200+</strong> per successful referral. Climb the ranks, unlock better rewards.
+              Refer friends to IQFITS-47. They get <strong className="text-stone-50">5% off</strong> their first order — you earn <strong className="text-stone-50">KES 200+</strong> per successful referral. Climb the ranks, unlock better rewards.
             </p>
 
             {/* Stat pills */}
@@ -431,7 +431,7 @@ export default function ReferralPage() {
                   {
                     icon: <Users size={16} />,
                     title: "Friend orders",
-                    body: "Your friend gets 5% off their first IQFIT47 order automatically.",
+                    body: "Your friend gets 5% off their first IQFITS-47 order automatically.",
                   },
                   {
                     icon: <Trophy size={16} />,
@@ -506,7 +506,7 @@ export default function ReferralPage() {
 
             {/* T&Cs note */}
             <div className="rounded-2xl border border-ink/8 bg-stone-100 px-5 py-4 text-xs text-ink/50">
-              <strong className="font-mono uppercase tracking-wide">Terms:</strong> Credits are earned per confirmed paid order placed by a new customer using your unique link. Self-referrals are not valid. Referral and promo discounts cannot be combined. IQFIT47 reserves the right to update the programme at any time.
+              <strong className="font-mono uppercase tracking-wide">Terms:</strong> Credits are earned per confirmed paid order placed by a new customer using your unique link. Self-referrals are not valid. Referral and promo discounts cannot be combined. IQFITS-47 reserves the right to update the programme at any time.
             </div>
           </div>
         </div>

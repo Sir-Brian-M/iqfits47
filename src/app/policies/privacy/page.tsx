@@ -1,9 +1,9 @@
-import React from "react";
+﻿import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Learn how IQFIT47 handles your personal data, order information, and payment security.",
+  description: "Learn how IQFITS-47 handles your personal data, order information, and payment security.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -13,7 +13,7 @@ export default function PrivacyPolicyPage() {
         <h2 className="font-display text-2xl uppercase tracking-tight text-ink">Privacy Policy</h2>
         <p className="font-mono text-xs text-ink/40">Last Updated: July 2026</p>
         <p>
-          At <strong>IQFIT47</strong>, we are committed to protecting the privacy and security of our customers. This Privacy Policy describes how we collect, use, and safeguard the personal information you provide when using our platform.
+          At <strong>IQFITS-47</strong>, we are committed to protecting the privacy and security of our customers. This Privacy Policy describes how we collect, use, and safeguard the personal information you provide when using our platform.
         </p>
       </section>
 
@@ -71,7 +71,7 @@ export default function PrivacyPolicyPage() {
       <section className="space-y-3">
         <h3 className="font-display text-lg uppercase tracking-tight text-ink">5. Data Retention & Your Rights</h3>
         <p>
-          We retain order history details to facilitate return windows and order lookups. You have the right to request access to the personal data we hold about you, or request that we delete your contact record from our active marketing lists. To make a request, contact us at <strong>privacy@iqfits47.top</strong>.
+          We retain order history details to facilitate return windows and order lookups. You have the right to request access to the personal data we hold about you, or request that we delete your contact record from our active marketing lists. To make a request, contact us at <strong>privacy@iqfits-47.top</strong>.
         </p>
       </section>
     </>

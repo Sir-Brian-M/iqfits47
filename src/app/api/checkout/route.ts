@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { createOrder, attachTransactionReference } from "@/lib/orders";
 import { initiateStkPush } from "@/lib/lipia";
 import { normalizeMpesaPhone } from "@/lib/utils";
@@ -122,7 +122,7 @@ export async function POST(req: NextRequest) {
       phone: normalizedPhone,
       amount: total,
       accountReference: order.orderNumber,
-      transactionDesc: `IQFIT47 order ${order.orderNumber}`,
+      transactionDesc: `IQFITS-47 order ${order.orderNumber}`,
     });
 
     if (!stk.success) {

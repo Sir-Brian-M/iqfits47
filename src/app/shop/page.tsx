@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+﻿import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { getDbProducts, categories } from "@/lib/data/products";
@@ -10,7 +10,7 @@ import { Product } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Shop All",
-  description: "Browse every kick, apparel piece and accessory in the IQFIT47 catalogue.",
+  description: "Browse every kick, apparel piece and accessory in the IQFITS-47 catalogue.",
 };
 
 function sortProducts(list: Product[], sort: string) {

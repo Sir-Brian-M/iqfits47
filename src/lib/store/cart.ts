@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -62,6 +62,6 @@ export const useCart = create<CartState>()(
         get().lines.reduce((sum, l) => sum + l.price * l.quantity, 0),
       count: () => get().lines.reduce((sum, l) => sum + l.quantity, 0),
     }),
-    { name: "iqfit47-cart" }
+    { name: "IQFITS-47-cart" }
   )
 );

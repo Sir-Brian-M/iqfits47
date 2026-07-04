@@ -1,9 +1,9 @@
-import React from "react";
+﻿import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Read the Terms of Service and sales conditions for shopping on IQFIT47.",
+  description: "Read the Terms of Service and sales conditions for shopping on IQFITS-47.",
 };
 
 export default function TermsOfServicePage() {
@@ -13,7 +13,7 @@ export default function TermsOfServicePage() {
         <h2 className="font-display text-2xl uppercase tracking-tight text-ink">Terms of Service</h2>
         <p className="font-mono text-xs text-ink/40">Last Updated: July 2026</p>
         <p>
-          Welcome to <strong>IQFIT47</strong>. By browsing, accessing, or placing an order on our website, you agree to comply with and be bound by the following Terms of Service. Please read them carefully before completing any transaction.
+          Welcome to <strong>IQFITS-47</strong>. By browsing, accessing, or placing an order on our website, you agree to comply with and be bound by the following Terms of Service. Please read them carefully before completing any transaction.
         </p>
       </section>
 
@@ -22,7 +22,7 @@ export default function TermsOfServicePage() {
       <section className="space-y-3">
         <h3 className="font-display text-lg uppercase tracking-tight text-ink">1. Product Authenticity & Inventory</h3>
         <p>
-          We guarantee that all sneakers, apparel, and accessories listed on IQFIT47 are <strong>100% authentic</strong>. 
+          We guarantee that all sneakers, apparel, and accessories listed on IQFITS-47 are <strong>100% authentic</strong>. 
         </p>
         <p>
           Due to the exclusive and limited nature of our products, items in your cart are not reserved until payment is fully completed and confirmed by M-Pesa. In rare cases where a product sells out concurrently due to processing lag, we will contact you immediately to arrange an alternative product exchange or a full refund.
@@ -56,7 +56,7 @@ export default function TermsOfServicePage() {
         <ul className="list-disc pl-5 space-y-1">
           <li><strong>Nairobi & Kiambu:</strong> 1 to 2 business days.</li>
           <li><strong>Nationwide:</strong> 2 to 4 business days.</li>
-          <li>Deliveries are carried out by third-party logistics agents. IQFIT47 is not liable for transport delays caused by extreme weather, civil unrest, or courier errors.</li>
+          <li>Deliveries are carried out by third-party logistics agents. IQFITS-47 is not liable for transport delays caused by extreme weather, civil unrest, or courier errors.</li>
         </ul>
       </section>
 
@@ -70,7 +70,7 @@ export default function TermsOfServicePage() {
       <section className="space-y-3">
         <h3 className="font-display text-lg uppercase tracking-tight text-ink">6. Intellectual Property</h3>
         <p>
-          All content on this website—including logo designs, layouts, graphics, text, and code—is the property of IQFIT47 and protected by copyright laws. You may not copy, reproduce, or reuse any part of our site without express written consent.
+          All content on this website—including logo designs, layouts, graphics, text, and code—is the property of IQFITS-47 and protected by copyright laws. You may not copy, reproduce, or reuse any part of our site without express written consent.
         </p>
       </section>
     </>

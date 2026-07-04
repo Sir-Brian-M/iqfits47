@@ -1,4 +1,4 @@
-import { Product } from "@/lib/types";
+﻿import { Product } from "@/lib/types";
 import { supabase } from "@/lib/supabase/client";
 
 const sizesRun = (stockPattern: number[]): { size: string; stock: number }[] =>
@@ -146,7 +146,7 @@ export const products: Product[] = [
     id: "j001",
     slug: "oversized-varsity-jacket-ink",
     name: "Oversized Varsity Jacket",
-    brand: "IQFIT47 Label",
+    brand: "IQFITS-47 Label",
     category: "apparel",
     price: 6800,
     description:
@@ -171,7 +171,7 @@ export const products: Product[] = [
     id: "j002",
     slug: "boxy-graphic-tee-cream",
     name: "Boxy Graphic Tee",
-    brand: "IQFIT47 Label",
+    brand: "IQFITS-47 Label",
     category: "apparel",
     price: 2200,
     description:
@@ -198,7 +198,7 @@ export const products: Product[] = [
     id: "j003",
     slug: "cargo-utility-pants-olive",
     name: "Cargo Utility Pants",
-    brand: "IQFIT47 Label",
+    brand: "IQFITS-47 Label",
     category: "apparel",
     price: 3600,
     description:
@@ -223,7 +223,7 @@ export const products: Product[] = [
     id: "j004",
     slug: "hooded-fleece-slate",
     name: "Heavyweight Hoodie",
-    brand: "IQFIT47 Label",
+    brand: "IQFITS-47 Label",
     category: "apparel",
     price: 3200,
     compareAtPrice: 3900,
@@ -249,7 +249,7 @@ export const products: Product[] = [
     id: "a001",
     slug: "structured-cap-hazard",
     name: "Structured Cap",
-    brand: "IQFIT47 Label",
+    brand: "IQFITS-47 Label",
     category: "accessories",
     price: 1500,
     description: "6-panel structured cap with an embroidered front logo and adjustable strap back.",
@@ -265,7 +265,7 @@ export const products: Product[] = [
     id: "a002",
     slug: "canvas-tote-ink",
     name: "Canvas Utility Tote",
-    brand: "IQFIT47 Label",
+    brand: "IQFITS-47 Label",
     category: "accessories",
     price: 1800,
     description: "Heavy canvas tote built to carry a fresh box of kicks without stretching out.",

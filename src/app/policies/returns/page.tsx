@@ -1,9 +1,9 @@
-import React from "react";
+﻿import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Returns & Exchanges",
-  description: "Learn about the return, refund, and exchange policies for sneakers, apparel, and accessories at IQFIT47.",
+  description: "Learn about the return, refund, and exchange policies for sneakers, apparel, and accessories at IQFITS-47.",
 };
 
 export default function ReturnsPolicyPage() {
@@ -13,7 +13,7 @@ export default function ReturnsPolicyPage() {
         <h2 className="font-display text-2xl uppercase tracking-tight text-ink">Returns & Exchanges</h2>
         <p className="font-mono text-xs text-ink/40">Last Updated: July 2026</p>
         <p>
-          At <strong>IQFIT47</strong>, we source authentic sneakers, premium apparel, and accessories. Because our inventory consists of highly-coveted items and limited drops, we enforce a strict policy to ensure all items remain completely authentic and pristine for our community.
+          At <strong>IQFITS-47</strong>, we source authentic sneakers, premium apparel, and accessories. Because our inventory consists of highly-coveted items and limited drops, we enforce a strict policy to ensure all items remain completely authentic and pristine for our community.
         </p>
       </section>
 

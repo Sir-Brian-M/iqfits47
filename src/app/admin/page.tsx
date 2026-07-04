@@ -24,12 +24,69 @@ import {
   Loader2,
   Star,
   ExternalLink,
+  Gift,
+  Users,
+  Crown,
+  Flame,
+  Medal,
+  Zap,
+  DollarSign,
+  Activity,
 } from "lucide-react";
 import { formatKES } from "@/lib/utils";
 import { Product, Order, OrderStatus } from "@/lib/types";
 import { toast } from "sonner";
 
-type Tab = "orders" | "products" | "offers" | "announcements";
+type Tab = "orders" | "products" | "offers" | "announcements" | "referrals";
+
+interface AffiliateAdmin {
+  id: string;
+  phone: string;
+  display_name: string;
+  referral_code: string;
+  referral_count: number;
+  total_credit_kes: number;
+  pending_credit_kes: number;
+  rank: string;
+  created_at: string;
+}
+
+interface ReferralEvent {
+  id: string;
+  affiliate_id: string;
+  order_number: string;
+  order_total_kes: number;
+  credit_awarded: number;
+  discount_given: number;
+  created_at: string;
+}
+
+interface AffiliateStats {
+  totalAffiliates: number;
+  activeAffiliates: number;
+  totalReferrals: number;
+  totalCreditIssued: number;
+  pendingCredit: number;
+  totalOrdersReferred: number;
+  totalOrderValueReferred: number;
+}
+
+const RANK_ICON: Record<string, React.ReactNode> = {
+  none:     <Star size={12} />,
+  bronze:   <Medal size={12} />,
+  silver:   <Star size={12} />,
+  gold:     <Crown size={12} />,
+  platinum: <Zap size={12} />,
+  legend:   <Flame size={12} />,
+};
+const RANK_COLOR: Record<string, string> = {
+  none:     "bg-stone-100 text-stone-500",
+  bronze:   "bg-amber-100 text-amber-700",
+  silver:   "bg-slate-100 text-slate-600",
+  gold:     "bg-yellow-100 text-yellow-700",
+  platinum: "bg-cyan-100 text-cyan-700",
+  legend:   "bg-[#d4ff3d]/20 text-[#6b8000]",
+};
 
 const STATUS_OPTIONS: { value: OrderStatus; label: string; color: string }[] = [
   { value: "payment_pending", label: "Payment Pending", color: "bg-amber-100 text-amber-800" },
@@ -51,6 +108,10 @@ export default function AdminDashboardPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [offers, setOffers] = useState<any[]>([]);
   const [announcements, setAnnouncements] = useState<any[]>([]);
+  const [affiliates, setAffiliates] = useState<AffiliateAdmin[]>([]);
+  const [referralEvents, setReferralEvents] = useState<ReferralEvent[]>([]);
+  const [affiliateStats, setAffiliateStats] = useState<AffiliateStats | null>(null);
+  const [affiliateQuery, setAffiliateQuery] = useState("");
 
   // Selection for edit/add modal
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -125,17 +186,19 @@ export default function AdminDashboardPage() {
 
   async function loadAllData() {
     try {
-      const [ordRes, prodRes, offRes, annRes] = await Promise.all([
+      const [ordRes, prodRes, offRes, annRes, affRes] = await Promise.all([
         fetch("/api/admin/orders"),
         fetch("/api/admin/products"),
         fetch("/api/admin/offers"),
         fetch("/api/admin/announcements"),
+        fetch("/api/admin/affiliates"),
       ]);
 
       const ordData = await ordRes.json();
       const prodData = await prodRes.json();
       const offData = await offRes.json();
       const annData = await annRes.json();
+      const affData = await affRes.json();
 
       const ordersList = ordData.orders || [];
       const productsList = prodData.products || [];
@@ -146,6 +209,12 @@ export default function AdminDashboardPage() {
       setProducts(productsList);
       setOffers(offersList);
       setAnnouncements(announcementsList);
+
+      if (!affData.error) {
+        setAffiliates(affData.affiliates || []);
+        setReferralEvents(affData.events || []);
+        setAffiliateStats(affData.stats || null);
+      }
 
       // Compute stats
       const paidOrders = ordersList.filter(
@@ -578,6 +647,19 @@ export default function AdminDashboardPage() {
             {t}
           </button>
         ))}
+        <button
+          onClick={() => setActiveTab("referrals")}
+          className={`border-b-2 px-6 py-3 font-semibold transition-colors flex items-center gap-2 ${
+            activeTab === "referrals" ? "border-hazard text-hazard" : "border-transparent text-ink/40 hover:text-ink"
+          }`}
+        >
+          <Gift size={14} /> Referrals
+          {affiliateStats && affiliateStats.activeAffiliates > 0 && (
+            <span className="rounded-full bg-hazard px-1.5 py-0.5 font-mono text-[9px] text-white leading-none">
+              {affiliateStats.activeAffiliates}
+            </span>
+          )}
+        </button>
       </div>
 
       {/* Active Tab View */}

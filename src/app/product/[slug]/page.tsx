@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+﻿import { notFound } from "next/navigation";
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 
@@ -42,9 +42,9 @@ export async function generateMetadata({
   const product = await getProductBySlug(slug);
   if (!product) return {};
 
-  const title = `${product.name} - ${product.brand} | IQFIT47`;
-  const description = `${product.description} Shop authentic ${product.brand} sneakers and streetwear at IQFIT47 Nairobi store. Next-day delivery.`;
-  const url = `https://iqfits47.top/product/${product.slug}`;
+  const title = `${product.name} - ${product.brand} | IQFITS-47`;
+  const description = `${product.description} Shop authentic ${product.brand} sneakers and streetwear at IQFITS-47 Nairobi store. Next-day delivery.`;
+  const url = `https://iqfits-47.top/product/${product.slug}`;
 
   return {
     title,
@@ -99,7 +99,7 @@ export default async function ProductPage({
     "color": product.colorway,
     "offers": {
       "@type": "Offer",
-      "url": `https://iqfits47.top/product/${product.slug}`,
+      "url": `https://iqfits-47.top/product/${product.slug}`,
       "priceCurrency": "KES",
       "price": product.price,
       "itemCondition": "https://schema.org/NewCondition",

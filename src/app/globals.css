@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -20,7 +20,7 @@ body {
   color: #15151a;
 }
 
-/* Perforated "ticket" edge — the signature IQFIT47 motif used on
+/* Perforated "ticket" edge — the signature IQFITS-47 motif used on
    product cards, the cart summary and order tracking stubs. */
 .ticket-notch {
   position: relative;
