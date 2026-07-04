@@ -3,6 +3,7 @@ import { checkTransactionStatus } from "@/lib/lipia";
 import { getOrderByNumber, markOrderPaid, updateOrderStatus } from "@/lib/orders";
 import { OrderStatus } from "@/lib/types";
 import { sendOrderConfirmationEmail, sendAdminNewOrderEmail, sendOrderStatusUpdateEmail } from "@/lib/mail";
+import { sendOrderConfirmationSMS, sendOrderStatusUpdateSMS } from "@/lib/sms";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -39,6 +40,11 @@ export async function GET(req: NextRequest) {
           } catch (err) {
             console.error("Failed to send checkout success emails in status check:", err);
           }
+          try {
+            await sendOrderConfirmationSMS(markPaidResult.order);
+          } catch (smsErr) {
+            console.error("Failed to send confirmation SMS in status check:", smsErr);
+          }
         }
         return NextResponse.json({
           status: markPaidResult.order.status,
@@ -54,6 +60,11 @@ export async function GET(req: NextRequest) {
           await sendOrderStatusUpdateEmail(updated);
         } catch (err) {
           console.error("Failed to send cancellation email in status check:", err);
+        }
+        try {
+          await sendOrderStatusUpdateSMS(updated);
+        } catch (smsErr) {
+          console.error("Failed to send cancellation SMS in status check:", smsErr);
         }
         return NextResponse.json({
           status: updated.status,

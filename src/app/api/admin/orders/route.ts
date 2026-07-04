@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer, isSupabaseServerConfigured } from "@/lib/supabase/server";
 import { updateOrderStatus } from "@/lib/orders";
 import { sendOrderStatusUpdateEmail } from "@/lib/mail";
+import { sendOrderStatusUpdateSMS } from "@/lib/sms";
 
 function checkAuth(req: NextRequest): boolean {
   const cookie = req.cookies.get("iqfit_admin_session");
@@ -74,6 +75,14 @@ export async function PUT(req: NextRequest) {
     } catch (mailErr) {
       console.error("Failed to send order status update email:", mailErr);
       // Don't fail the request just because email failed
+    }
+
+    // Trigger SMS notification to the customer about status change
+    try {
+      await sendOrderStatusUpdateSMS(updatedOrder, note);
+    } catch (smsErr) {
+      console.error("Failed to send order status update SMS:", smsErr);
+      // Don't fail the request just because SMS failed
     }
 
     return NextResponse.json({ success: true, order: updatedOrder });
