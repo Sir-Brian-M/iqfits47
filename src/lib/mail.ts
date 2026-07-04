@@ -3,7 +3,7 @@ import { formatKES } from "@/lib/utils";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 const MAIL_SENDER = "IQFITS-47 <notifications@iqfits-47.top>";
-const ADMIN_EMAIL = "notifications@iqfits-47.top"; // Notify admin here
+const ADMIN_EMAIL = "iqfits47@gmail.com"; // Notify admin here
 
 interface SendEmailParams {
   to: string;
