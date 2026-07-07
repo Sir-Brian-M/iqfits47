@@ -18,10 +18,10 @@ import {
   BookOpen,
   Award,
   ChevronRight,
-  Instagram,
   FileText
 } from "lucide-react";
 import Link from "next/link";
+import { InstagramIcon } from "@/components/ui/instagram-icon";
 
 type PartnershipType = "creator" | "brand" | "consignment" | "wholesale";
 
@@ -187,7 +187,7 @@ function OnboardingContent() {
       case "creator":
         return [
           {
-            icon: <Instagram className="text-hazard" size={18} />,
+            icon: <InstagramIcon className="text-hazard" size={18} />,
             title: "Create Lookbooks & Reviews",
             desc: "Film video reviews or post premium outfits wearing our latest drops on Instagram and TikTok."
           },
