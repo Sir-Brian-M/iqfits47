@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Mail, MessageSquare, X, ExternalLink, Globe, Phone } from "lucide-react";
+import { Mail, MessageSquare, X, ExternalLink, Globe } from "lucide-react";
 
 export function DeveloperCTA() {
   const [isOpen, setIsOpen] = useState(false);
@@ -120,29 +120,6 @@ export function DeveloperCTA() {
                     <ExternalLink size={14} className="text-stone-50/30" />
                   </motion.a>
 
-                  {/* Phone call */}
-                  <motion.a
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    href="tel:+254792710951"
-                    className="flex items-center justify-between rounded-2xl border border-stone-50/5 bg-ink/45 p-4 transition-all hover:border-hazard/50 hover:bg-ink/60"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="rounded-lg bg-blue-500/10 p-2 text-blue-400">
-                        <Phone size={18} />
-                      </div>
-                      <div className="text-left">
-                        <h4 className="font-display text-xs uppercase tracking-wider text-stone-50">
-                          Direct Phone Call
-                        </h4>
-                        <p className="font-mono text-[10px] text-stone-50/45 mt-0.5">
-                          +254 792 710 951 (Call/Tel)
-                        </p>
-                      </div>
-                    </div>
-                    <ExternalLink size={14} className="text-stone-50/30" />
-                  </motion.a>
-
                   {/* Portfolio Website */}
                   <motion.a
                     whileHover={{ scale: 1.02, y: -2 }}
@@ -172,7 +149,7 @@ export function DeveloperCTA() {
                   <motion.a
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    href="mailto:cyberlion254@gmail.com?subject=Project%20Inquiry%20from%20IQFITS-47%20Visitor"
+                    href="mailto:murutubrian@gmail.com?subject=Project%20Inquiry%20from%20IQFITS-47%20Visitor"
                     className="flex items-center justify-between rounded-2xl border border-stone-50/5 bg-ink/45 p-4 transition-all hover:border-hazard/50 hover:bg-ink/60"
                   >
                     <div className="flex items-center gap-3">
@@ -184,7 +161,7 @@ export function DeveloperCTA() {
                           Send Email Inquiry
                         </h4>
                         <p className="font-mono text-[10px] text-stone-50/45 mt-0.5">
-                          cyberlion254@gmail.com
+                          murutubrian@gmail.com
                         </p>
                       </div>
                     </div>
