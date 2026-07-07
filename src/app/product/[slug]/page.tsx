@@ -45,13 +45,44 @@ export async function generateMetadata({
   const product = await getProductBySlug(slug);
   if (!product) return {};
 
-  const title = `${product.name} - ${product.brand} | IQFITS-47`;
-  const description = `${product.description} Shop authentic ${product.brand} sneakers and streetwear at IQFITS-47 Nairobi store. Next-day delivery.`;
-  const url = `https://iqfits-47.top/product/${product.slug}`;
+  const title = `${product.name} — ${product.brand} | Buy Online Kenya | IQFITS-47`;
+
+  // Rich, keyword-dense description for Google Search snippets
+  const availableSizes = product.sizes
+    .filter((s) => s.stock > 0)
+    .map((s) => s.size)
+    .join(", ");
+  const inStock = product.sizes.some((s) => s.stock > 0);
+  const description = [
+    product.description,
+    `Shop authentic ${product.brand} ${product.name} (${product.colorway}) at IQFITS-47 — Kenya's trusted sneaker store.`,
+    inStock
+      ? `Available sizes: ${availableSizes}.`
+      : "Currently out of stock — check back soon.",
+    `Pay with M-Pesa. Fast delivery across Nairobi and Kenya (1–4 days). 100% original, genuine ${product.brand}.`,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const url = `https://iqfits47.store/product/${product.slug}`;
+  const primaryImage = product.images[0];
 
   return {
     title,
     description,
+    keywords: [
+      product.name,
+      product.brand,
+      `${product.brand} Kenya`,
+      `${product.name} Kenya`,
+      `buy ${product.brand} Kenya`,
+      `${product.name} price Kenya`,
+      `${product.colorway}`,
+      `authentic ${product.brand} Kenya`,
+      `original ${product.brand} Nairobi`,
+      "sneakers Kenya",
+      "IQFITS-47",
+    ],
     alternates: {
       canonical: url,
     },
@@ -59,21 +90,31 @@ export async function generateMetadata({
       title,
       description,
       url,
+      siteName: "IQFITS-47",
+      locale: "en_KE",
+      // "og:type": "product" helps Facebook & Pinterest product discovery
       type: "website",
-      images: [
-        {
-          url: product.images[0],
-          width: 800,
-          height: 800,
-          alt: product.name,
-        },
-      ],
+      images: product.images.slice(0, 4).map((img, i) => ({
+        url: img,
+        width: 800,
+        height: 800,
+        alt: i === 0 ? product.name : `${product.name} — view ${i + 1}`,
+      })),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [product.images[0]],
+      images: [primaryImage],
+    },
+    other: {
+      // Open Graph product meta — used by Pinterest, Facebook Shops
+      "product:price:amount": String(product.price),
+      "product:price:currency": "KES",
+      "product:availability": inStock ? "in stock" : "out of stock",
+      "product:condition": "new",
+      "product:brand": product.brand,
+      "product:retailer_item_id": product.slug,
     },
   };
 }
@@ -89,27 +130,147 @@ export default async function ProductPage({
 
   const related = await getRelatedProducts(product);
 
+  const productUrl = `https://iqfits47.store/product/${product.slug}`;
+
+  const inStock = product.sizes.some((s) => s.stock > 0);
+
+  // Per-size offers — gives Google granular size availability
+  const sizeOffers = product.sizes.map((variant) => ({
+    "@type": "Offer",
+    "url": productUrl,
+    "priceCurrency": "KES",
+    "price": product.price,
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": variant.stock > 0
+      ? "https://schema.org/InStock"
+      : "https://schema.org/OutOfStock",
+    "size": variant.size,
+    "seller": {
+      "@type": "Organization",
+      "name": "IQFITS-47",
+      "url": "https://iqfits47.store",
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": 0,
+        "currency": "KES",
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "KE",
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "DAY",
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 4,
+          "unitCode": "DAY",
+        },
+      },
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "KE",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 7,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn",
+    },
+  }));
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": productUrl,
     "name": product.name,
     "image": product.images,
-    "description": product.description,
+    "description": [
+      product.description,
+      `Authentic ${product.brand} ${product.name} in ${product.colorway} colorway.`,
+      `Shop original ${product.brand} sneakers at IQFITS-47 — Kenya's trusted sneaker store.`,
+      `Pay with M-Pesa. Fast delivery across Nairobi and Kenya.`,
+    ].join(" "),
+    // SKU = slug for Google Merchant Center matching
+    "sku": product.slug,
+    // MPN helps Google cross-reference with product catalog
+    "mpn": product.slug.toUpperCase(),
+    "identifier_exists": "false",
     "brand": {
       "@type": "Brand",
       "name": product.brand,
     },
     "color": product.colorway,
-    "offers": {
-      "@type": "Offer",
-      "url": `https://iqfits-47.top/product/${product.slug}`,
-      "priceCurrency": "KES",
-      "price": product.price,
-      "itemCondition": "https://schema.org/NewCondition",
-      "availability": product.sizes.some((s) => s.stock > 0)
-        ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
+    // Google Merchant Center category taxonomy
+    "category": product.category === "sneakers"
+      ? "Apparel & Accessories > Shoes"
+      : product.category === "apparel"
+      ? "Apparel & Accessories > Clothing"
+      : "Apparel & Accessories",
+    // Size system for footwear — helps GMC
+    ...(product.category === "sneakers" && {
+      "size": product.sizes
+        .filter((s) => s.stock > 0)
+        .map((s) => s.size)
+        .join(", "),
+      "sizeSystem": "EU",
+    }),
+    // Offer: use AggregateOffer if multiple sizes, else single Offer
+    "offers": product.sizes.length > 1
+      ? {
+          "@type": "AggregateOffer",
+          "url": productUrl,
+          "priceCurrency": "KES",
+          "lowPrice": product.price,
+          "highPrice": product.price,
+          "offerCount": product.sizes.filter((s) => s.stock > 0).length,
+          "availability": inStock
+            ? "https://schema.org/InStock"
+            : "https://schema.org/OutOfStock",
+          "itemCondition": "https://schema.org/NewCondition",
+          "offers": sizeOffers,
+        }
+      : sizeOffers[0],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": product.rating,
+      "reviewCount": product.reviewCount,
+      "bestRating": 5,
+      "worstRating": 1,
     },
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://iqfits47.store",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Shop",
+        "item": "https://iqfits47.store/shop",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": product.name,
+        "item": productUrl,
+      },
+    ],
   };
 
   return (
@@ -118,6 +279,10 @@ export default async function ProductPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
         <ProductGallery images={product.images} name={product.name} />

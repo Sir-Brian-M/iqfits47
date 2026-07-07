@@ -121,7 +121,105 @@ export function Navbar() {
           <Menu size={22} />
         </button>
 
-        <Link href="/" className="flex items-baseline gap-1 font-display text-2xl tracking-tight">
+        <Link href="/" className="flex items-center gap-2 font-display text-2xl tracking-tight">
+          {/* Sneaker logo — detailed side-profile low-top illustration, brand colours */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 44"
+            width="48"
+            height="33"
+            aria-label="IQFITS-47 sneaker logo"
+            className="shrink-0"
+          >
+            {/* ── Outsole (thick rubber base) ─────────────────── */}
+            <path
+              d="M3 32 Q2 38 7 39 L56 39 Q61 39 62 35 L62 31 Z"
+              fill="#F5F5F0"
+              stroke="#15151A"
+              strokeWidth="1"
+            />
+            {/* Orange midsole stripe */}
+            <path d="M3.5 33 L61.5 33" stroke="#FF5A1F" strokeWidth="2.2" strokeLinecap="round" />
+            {/* Heel curvature detail */}
+            <path d="M56 39 Q62 39 62 34" fill="none" stroke="#E0DDD5" strokeWidth="1" />
+
+            {/* ── Main upper body ─────────────────────────────── */}
+            <path
+              d="M5 31 Q5 16 13 13 L35 10 L48 13 Q56 16 59 24 L59 31 Z"
+              fill="#15151A"
+            />
+
+            {/* ── Toe box panel (lighter shade, subtle depth) ── */}
+            <path
+              d="M5 31 Q5 17 13 14 L24 11.5 Q14 15 13 28 Z"
+              fill="#1E1E24"
+            />
+            {/* Toe cap stitching line */}
+            <path
+              d="M7 30 Q7 19 14 16 L21 13.5"
+              fill="none"
+              stroke="#2D2D36"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              strokeDasharray="2 1.5"
+            />
+
+            {/* ── Quarter / side panel ────────────────────────── */}
+            <path
+              d="M24 11.5 L48 13 Q56 16 59 24 L59 31 L13 31 Q13 18 24 11.5 Z"
+              fill="#1A1A21"
+            />
+
+            {/* ── Collar (ankle opening) ──────────────────────── */}
+            <path
+              d="M48 13 Q58 11 61 18 L61 31 L59 31 L59 24 Q56 16 48 13 Z"
+              fill="#222229"
+            />
+            {/* Collar padded edge */}
+            <path
+              d="M48 13 Q58 10 61 18"
+              fill="none"
+              stroke="#2E2E38"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+
+            {/* ── Heel tab — orange ───────────────────────────── */}
+            <rect x="57" y="12" width="4" height="12" rx="2" fill="#FF5A1F" />
+            {/* Heel tab notch */}
+            <rect x="58.5" y="13.5" width="1" height="3" rx="0.5" fill="#CC4010" />
+
+            {/* ── Lace cage / eyelets ─────────────────────────── */}
+            <path
+              d="M18 20 L34 17.5"
+              stroke="#2B2B35"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+            {/* Laces — lime/hazard */}
+            <line x1="18" y1="20" x2="34" y2="17.5" stroke="#D4FF3D" strokeWidth="1" strokeLinecap="round" strokeDasharray="2 2" />
+            <line x1="18" y1="23" x2="36" y2="20.5" stroke="#D4FF3D" strokeWidth="1" strokeLinecap="round" strokeDasharray="2 2" />
+            <line x1="18" y1="26" x2="38" y2="23.5" stroke="#D4FF3D" strokeWidth="1" strokeLinecap="round" strokeDasharray="2 2" />
+            {/* Lace eyelet dots */}
+            <circle cx="18" cy="20" r="1.2" fill="#333340" />
+            <circle cx="18" cy="23" r="1.2" fill="#333340" />
+            <circle cx="18" cy="26" r="1.2" fill="#333340" />
+
+            {/* ── Swoosh-style brand accent stripe ────────────── */}
+            <path
+              d="M13 29 Q28 20 46 15.5"
+              fill="none"
+              stroke="#FF5A1F"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              opacity="0.8"
+            />
+
+            {/* ── Perforations on toe box (Air Force 1 style) ── */}
+            <circle cx="9" cy="24" r="0.7" fill="#2B2B33" />
+            <circle cx="9" cy="27" r="0.7" fill="#2B2B33" />
+            <circle cx="11" cy="22" r="0.7" fill="#2B2B33" />
+          </svg>
           IQFITS-<span className="text-hazard">47</span>
         </Link>
 

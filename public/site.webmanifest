@@ -1,0 +1,34 @@
+{
+  "name": "IQFITS-47 — Kicks & Streetwear Kenya",
+  "short_name": "IQFITS-47",
+  "description": "Kenya's trusted store for authentic sneakers, streetwear and designer clothing. Pay with M-Pesa.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#15151A",
+  "theme_color": "#15151A",
+  "lang": "en-KE",
+  "categories": ["shopping", "fashion"],
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

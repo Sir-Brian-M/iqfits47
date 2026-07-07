@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin, Package, Gift } from "lucide-react";
+import { MapPin, Package, Gift, Mail } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/instagram-icon";
 
 export function Footer() {
@@ -10,9 +10,66 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <span className="font-display text-3xl tracking-tight">
-              IQFITS-<span className="text-hazard">47</span>
-            </span>
+            <div className="flex items-center gap-2 font-display text-3xl tracking-tight">
+              {/* Sneaker icon — side-profile low-top, brand colours */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 32"
+                width="42"
+                height="28"
+                aria-hidden="true"
+                className="shrink-0"
+              >
+                {/* Midsole / sole */}
+                <path
+                  d="M2 24 Q2 28 6 28 L42 28 Q46 28 46 25 L46 23 L2 23 Z"
+                  fill="#ffffff"
+                  stroke="#15151A"
+                  strokeWidth="1.2"
+                />
+                {/* Orange accent stripe on sole */}
+                <path
+                  d="M3 24.5 L45 24.5"
+                  stroke="#FF5A1F"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                {/* Upper body — toe box */}
+                <path
+                  d="M4 23 Q4 12 10 10 L28 8 L36 10 Q42 12 44 18 L44 23 Z"
+                  fill="#15151A"
+                />
+                {/* Toe cap highlight */}
+                <path
+                  d="M5 22 Q5 14 11 12 L20 10.5"
+                  fill="none"
+                  stroke="#2B2B33"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+                {/* Collar / ankle opening */}
+                <path
+                  d="M36 10 Q44 8 46 14 L46 23 L44 23 L44 18 Q42 12 36 10 Z"
+                  fill="#1F1F26"
+                />
+                {/* Heel tab — orange accent */}
+                <rect x="42" y="10" width="3" height="8" rx="1.5" fill="#FF5A1F" />
+                {/* Lace area — three dashes */}
+                <line x1="14" y1="14" x2="22" y2="13" stroke="#D4FF3D" strokeWidth="1.2" strokeLinecap="round" />
+                <line x1="14" y1="17" x2="24" y2="15.5" stroke="#D4FF3D" strokeWidth="1.2" strokeLinecap="round" />
+                <line x1="14" y1="20" x2="26" y2="18.5" stroke="#D4FF3D" strokeWidth="1.2" strokeLinecap="round" />
+                {/* Swoosh-style accent stripe */}
+                <path
+                  d="M10 21 Q20 15 34 12"
+                  fill="none"
+                  stroke="#FF5A1F"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  opacity="0.7"
+                />
+              </svg>
+              <span>IQFITS-<span className="text-hazard">47</span></span>
+            </div>
             <p className="mt-4 max-w-sm text-sm text-stone-50/60">
               Authentic kicks, designer apparel and accessories, sourced for
               Nairobi and shipped anywhere in Kenya. Every drop is numbered,
@@ -62,6 +119,14 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2 text-stone-50/60">
                 <MapPin size={14} /> Nairobi, Kenya
+              </li>
+              <li>
+                <a
+                  href="mailto:support@iqfits47.store"
+                  className="flex items-center gap-2 hover:text-hazard"
+                >
+                  <Mail size={14} /> support@iqfits47.store
+                </a>
               </li>
               <li>
                 <a
