@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { markOrderPaid } from "@/lib/orders";
 import { supabaseServer } from "@/lib/supabase/server";
 import { sendOrderConfirmationEmail, sendAdminNewOrderEmail } from "@/lib/mail";
-import { sendOrderConfirmationSMS } from "@/lib/sms";
+import { sendOrderConfirmationSMS, sendAdminNewOrderSMS } from "@/lib/sms";
 
 /**
  * Webhook receiver for Lipia Online payment callbacks.
@@ -45,6 +45,11 @@ export async function POST(req: NextRequest) {
         await sendOrderConfirmationSMS(result.order);
       } catch (smsErr) {
         console.error("Failed to send confirmation SMS in callback:", smsErr);
+      }
+      try {
+        await sendAdminNewOrderSMS(result.order);
+      } catch (smsErr) {
+        console.error("Failed to send admin order paid SMS in callback:", smsErr);
       }
     }
   }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer, isSupabaseServerConfigured } from "@/lib/supabase/server";
-import { sendAdminPartnerApplicationEmail, sendPartnerConfirmationEmail } from "@/lib/mail";
+import { sendPartnerConfirmationEmail } from "@/lib/mail";
+import { sendPartnerConfirmationSMS } from "@/lib/sms";
 
 export async function POST(req: NextRequest) {
   try {
@@ -54,29 +55,44 @@ export async function POST(req: NextRequest) {
       console.warn("Supabase server client not configured, bypassing database write.");
     }
 
-    // 2. Trigger notification email to admin
-    const emailSent = await sendAdminPartnerApplicationEmail({
-      name,
-      email,
-      phone,
-      company,
-      website,
-      partnershipType,
-      message,
-    });
+    let emailSent = false;
+    let smsSent = false;
 
-    // 3. Trigger confirmation email to partner
+    // 2. Trigger confirmation email to partner
     if (email) {
-      await sendPartnerConfirmationEmail({
+      emailSent = await sendPartnerConfirmationEmail({
         name,
         email,
         partnershipType,
-      }).catch((err) => {
-        console.error("Failed to send partner confirmation email:", err);
-      });
+      })
+        .then((res) => {
+          if (!res) {
+            console.error("Resend API returned false for partner confirmation email.");
+          }
+          return res;
+        })
+        .catch((err) => {
+          console.error("Failed to send partner confirmation email:", err);
+          return false;
+        });
     }
 
-    if (!dbSaved && !emailSent) {
+    // 3. Trigger confirmation SMS to partner
+    if (phone) {
+      smsSent = await sendPartnerConfirmationSMS(name, phone, partnershipType)
+        .then((res) => {
+          if (!res) {
+            console.error("TextSMS API returned false for partner confirmation SMS.");
+          }
+          return res;
+        })
+        .catch((err) => {
+          console.error("Failed to send partner confirmation SMS:", err);
+          return false;
+        });
+    }
+
+    if (!dbSaved && !emailSent && !smsSent) {
       return NextResponse.json(
         { error: "Failed to process application. Please try again later or contact us directly." },
         { status: 500 }
@@ -88,6 +104,7 @@ export async function POST(req: NextRequest) {
       message: "Application submitted successfully.",
       dbSaved,
       emailSent,
+      smsSent,
     });
   } catch (err) {
     console.error("Partner application route error:", err);

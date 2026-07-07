@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer, isSupabaseServerConfigured } from "@/lib/supabase/server";
 import { sendPartnerStatusUpdateEmail } from "@/lib/mail";
+import { sendPartnerStatusUpdateSMS } from "@/lib/sms";
 
 function checkAuth(req: NextRequest): boolean {
   const cookie = req.cookies.get("iqfit_admin_session");
@@ -64,7 +65,7 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: updateError.message }, { status: 500 });
     }
 
-    // Trigger email notification if status changes to accepted, rejected or reviewed
+    // Trigger notifications if status changes to accepted, rejected or reviewed
     if (status === "accepted" || status === "rejected" || status === "reviewed") {
       await sendPartnerStatusUpdateEmail(
         {
@@ -76,6 +77,17 @@ export async function PUT(req: NextRequest) {
       ).catch((emailErr) => {
         console.error("Failed to send status update email:", emailErr);
       });
+
+      if (partner.phone) {
+        await sendPartnerStatusUpdateSMS(
+          partner.name,
+          partner.phone,
+          partner.partnership_type,
+          status
+        ).catch((smsErr) => {
+          console.error("Failed to send status update SMS:", smsErr);
+        });
+      }
     }
 
     return NextResponse.json({ success: true });

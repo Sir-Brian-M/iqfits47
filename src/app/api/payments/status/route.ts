@@ -3,7 +3,7 @@ import { checkTransactionStatus } from "@/lib/lipia";
 import { getOrderByNumber, markOrderPaid, updateOrderStatus } from "@/lib/orders";
 import { OrderStatus } from "@/lib/types";
 import { sendOrderConfirmationEmail, sendAdminNewOrderEmail, sendOrderStatusUpdateEmail } from "@/lib/mail";
-import { sendOrderConfirmationSMS, sendOrderStatusUpdateSMS } from "@/lib/sms";
+import { sendOrderConfirmationSMS, sendOrderStatusUpdateSMS, sendAdminNewOrderSMS } from "@/lib/sms";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -44,6 +44,11 @@ export async function GET(req: NextRequest) {
             await sendOrderConfirmationSMS(markPaidResult.order);
           } catch (smsErr) {
             console.error("Failed to send confirmation SMS in status check:", smsErr);
+          }
+          try {
+            await sendAdminNewOrderSMS(markPaidResult.order);
+          } catch (smsErr) {
+            console.error("Failed to send admin order paid SMS in status check:", smsErr);
           }
         }
         return NextResponse.json({

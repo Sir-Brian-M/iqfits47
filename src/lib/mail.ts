@@ -435,7 +435,12 @@ export async function sendPartnerStatusUpdateEmail(
           ? `
         <div style="background-color: #f0fdf4; border-radius: 12px; padding: 20px; margin: 24px 0; border: 1px solid #bbf7d0; font-size: 14px; line-height: 1.6; color: #15803d;">
           <p style="margin-top: 0; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em;">Congratulations! Your application has been ACCEPTED.</p>
-          <p style="margin-bottom: 0; color: #166534;">We are thrilled to welcome you to the IQFITS-47 circle. A member of our team will contact you in the next 24-48 hours to discuss next steps, share exclusive codes, and set up our onboarding call.</p>
+          <p style="margin-bottom: 16px; color: #166534;">We are thrilled to welcome you to the IQFITS-47 circle. A member of our team will contact you in the next 24-48 hours to discuss next steps, share exclusive codes, and set up our onboarding call.</p>
+          <p style="margin-bottom: 0; text-align: center;">
+            <a href="https://iqfits47.store/partner/onboarding?name=${encodeURIComponent(app.name)}&type=${encodeURIComponent(app.partnershipType)}" style="background-color: #FF5A1F; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-block; font-size: 14px; border: 1px solid #FF5A1F;">
+              Start Onboarding Setup
+            </a>
+          </p>
         </div>
       `
           : `
