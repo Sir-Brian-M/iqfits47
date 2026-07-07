@@ -121,18 +121,18 @@ export function Navbar() {
           <Menu size={22} />
         </button>
 
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex flex-col items-center justify-center gap-1 group text-center">
           {/* Double hazard orange diagonal slashes prefix */}
           <div className="flex gap-1 -skew-x-12 shrink-0">
-            <div className="h-6 w-1 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
-            <div className="h-6 w-1 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
+            <div className="h-4 w-1 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
+            <div className="h-4 w-1 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
           </div>
           
-          <div className="flex flex-col justify-center leading-none">
-            <div className="font-display text-3xl uppercase tracking-tighter text-ink">
+          <div className="flex flex-col items-center justify-center leading-none">
+            <div className="font-display text-[32px] uppercase tracking-tighter text-ink leading-none">
               IQFITS-<span className="text-hazard">47</span>
             </div>
-            <span className="font-body text-[8px] tracking-[0.18em] uppercase text-ink/50 mt-1 font-semibold">
+            <span className="font-body text-[8px] tracking-[0.18em] uppercase text-ink/85 mt-1.5 font-bold">
               KICKS • STREETWEAR • DESIGNER FITS
             </span>
           </div>
