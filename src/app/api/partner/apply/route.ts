@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer, isSupabaseServerConfigured } from "@/lib/supabase/server";
-import { sendAdminPartnerApplicationEmail } from "@/lib/mail";
+import { sendAdminPartnerApplicationEmail, sendPartnerConfirmationEmail } from "@/lib/mail";
 
 export async function POST(req: NextRequest) {
   try {
@@ -64,6 +64,17 @@ export async function POST(req: NextRequest) {
       partnershipType,
       message,
     });
+
+    // 3. Trigger confirmation email to partner
+    if (email) {
+      await sendPartnerConfirmationEmail({
+        name,
+        email,
+        partnershipType,
+      }).catch((err) => {
+        console.error("Failed to send partner confirmation email:", err);
+      });
+    }
 
     if (!dbSaved && !emailSent) {
       return NextResponse.json(

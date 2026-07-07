@@ -25,6 +25,7 @@ import {
   Star,
   ExternalLink,
   Gift,
+  Handshake,
   Users,
   Crown,
   Flame,
@@ -37,7 +38,7 @@ import { formatKES } from "@/lib/utils";
 import { Product, Order, OrderStatus } from "@/lib/types";
 import { toast } from "sonner";
 
-type Tab = "orders" | "products" | "offers" | "announcements" | "referrals";
+type Tab = "orders" | "products" | "offers" | "announcements" | "referrals" | "partners";
 
 interface AffiliateAdmin {
   id: string;
@@ -112,6 +113,10 @@ export default function AdminDashboardPage() {
   const [referralEvents, setReferralEvents] = useState<ReferralEvent[]>([]);
   const [affiliateStats, setAffiliateStats] = useState<AffiliateStats | null>(null);
   const [affiliateQuery, setAffiliateQuery] = useState("");
+  const [partners, setPartners] = useState<any[]>([]);
+  const [partnerQuery, setPartnerQuery] = useState("");
+  const [partnerStatusFilter, setPartnerStatusFilter] = useState<string>("all");
+  const [partnerTypeFilter, setPartnerTypeFilter] = useState<string>("all");
 
   // Selection for edit/add modal
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -184,14 +189,36 @@ export default function AdminDashboardPage() {
     router.push("/admin/login");
   }
 
+  async function handleUpdatePartnerStatus(id: string, newStatus: "pending" | "reviewed" | "accepted" | "rejected") {
+    try {
+      const res = await fetch("/api/admin/partners", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status: newStatus }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(data.error || "Failed to update partner status");
+      } else {
+        toast.success(`Partner status updated to ${newStatus}`);
+        setPartners((prev) =>
+          prev.map((p) => (p.id === id ? { ...p, status: newStatus, updated_at: new Date().toISOString() } : p))
+        );
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
+  }
+
   async function loadAllData() {
     try {
-      const [ordRes, prodRes, offRes, annRes, affRes] = await Promise.all([
+      const [ordRes, prodRes, offRes, annRes, affRes, partRes] = await Promise.all([
         fetch("/api/admin/orders"),
         fetch("/api/admin/products"),
         fetch("/api/admin/offers"),
         fetch("/api/admin/announcements"),
         fetch("/api/admin/affiliates"),
+        fetch("/api/admin/partners"),
       ]);
 
       const ordData = await ordRes.json();
@@ -199,6 +226,7 @@ export default function AdminDashboardPage() {
       const offData = await offRes.json();
       const annData = await annRes.json();
       const affData = await affRes.json();
+      const partData = await partRes.json().catch(() => ({}));
 
       const ordersList = ordData.orders || [];
       const productsList = prodData.products || [];
@@ -209,6 +237,7 @@ export default function AdminDashboardPage() {
       setProducts(productsList);
       setOffers(offersList);
       setAnnouncements(announcementsList);
+      setPartners(partData?.partners || []);
 
       if (!affData.error) {
         setAffiliates(affData.affiliates || []);
@@ -663,6 +692,19 @@ export default function AdminDashboardPage() {
           {affiliateStats && affiliateStats.activeAffiliates > 0 && (
             <span className="rounded-full bg-hazard px-1.5 py-0.5 font-mono text-[9px] text-white leading-none">
               {affiliateStats.activeAffiliates}
+            </span>
+          )}
+        </button>
+        <button
+          onClick={() => setActiveTab("partners")}
+          className={`border-b-2 px-6 py-3 font-semibold transition-colors flex items-center gap-2 ${
+            activeTab === "partners" ? "border-hazard text-hazard" : "border-transparent text-ink/40 hover:text-ink"
+          }`}
+        >
+          <Handshake size={14} /> Partners
+          {partners.filter((p) => p.status === "pending").length > 0 && (
+            <span className="rounded-full bg-hazard px-1.5 py-0.5 font-mono text-[9px] text-white leading-none">
+              {partners.filter((p) => p.status === "pending").length}
             </span>
           )}
         </button>
@@ -1255,6 +1297,166 @@ export default function AdminDashboardPage() {
                   )}
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "partners" && (
+          <div className="space-y-6">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h2 className="font-display text-xl uppercase tracking-tight">Partner Applications</h2>
+                <p className="text-xs text-ink/50 mt-0.5">Manage and review applications submitted via the partner portal.</p>
+              </div>
+
+              {/* Filters & Search */}
+              <div className="flex flex-wrap items-center gap-3">
+                {/* Search Bar */}
+                <div className="flex items-center gap-2 rounded-xl border border-ink/10 px-3 py-1.5 bg-white text-xs w-60">
+                  <Search size={14} className="text-ink/30" />
+                  <input
+                    value={partnerQuery}
+                    onChange={(e) => setPartnerQuery(e.target.value)}
+                    placeholder="Search name, email, brand..."
+                    className="w-full outline-none bg-transparent"
+                  />
+                </div>
+
+                {/* Status Filter */}
+                <select
+                  value={partnerStatusFilter}
+                  onChange={(e) => setPartnerStatusFilter(e.target.value)}
+                  className="rounded-xl border border-ink/10 bg-white px-3 py-2 text-xs outline-none"
+                >
+                  <option value="all">All Statuses</option>
+                  <option value="pending">Pending</option>
+                  <option value="reviewed">Reviewed</option>
+                  <option value="accepted">Accepted</option>
+                  <option value="rejected">Rejected</option>
+                </select>
+
+                {/* Type Filter */}
+                <select
+                  value={partnerTypeFilter}
+                  onChange={(e) => setPartnerTypeFilter(e.target.value)}
+                  className="rounded-xl border border-ink/10 bg-white px-3 py-2 text-xs outline-none"
+                >
+                  <option value="all">All Types</option>
+                  <option value="creator">Creator</option>
+                  <option value="brand">Brand</option>
+                  <option value="consignment">Consignment</option>
+                  <option value="wholesale">Wholesale</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Partners Table */}
+            <div className="overflow-x-auto rounded-2xl border border-ink/10 bg-white">
+              <table className="w-full border-collapse text-left text-sm">
+                <thead>
+                  <tr className="border-b border-ink/10 bg-stone-50 font-mono text-[10px] uppercase text-ink/50">
+                    <th className="px-4 py-3">Applicant Info</th>
+                    <th className="px-4 py-3">Partnership Type</th>
+                    <th className="px-4 py-3">Proposal / Message</th>
+                    <th className="px-4 py-3">Status</th>
+                    <th className="px-4 py-3">Submitted At</th>
+                    <th className="px-4 py-3 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-ink/5">
+                  {partners.filter(p => {
+                    const matchQuery = p.name.toLowerCase().includes(partnerQuery.toLowerCase()) ||
+                      p.email.toLowerCase().includes(partnerQuery.toLowerCase()) ||
+                      (p.company && p.company.toLowerCase().includes(partnerQuery.toLowerCase())) ||
+                      (p.website && p.website.toLowerCase().includes(partnerQuery.toLowerCase()));
+                    const matchStatus = partnerStatusFilter === "all" || p.status === partnerStatusFilter;
+                    const matchType = partnerTypeFilter === "all" || p.partnership_type === partnerTypeFilter;
+                    return matchQuery && matchStatus && matchType;
+                  }).length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className="px-4 py-8 text-center text-ink/40 font-mono text-xs">
+                        No partner applications found.
+                      </td>
+                    </tr>
+                  ) : (
+                    partners.filter(p => {
+                      const matchQuery = p.name.toLowerCase().includes(partnerQuery.toLowerCase()) ||
+                        p.email.toLowerCase().includes(partnerQuery.toLowerCase()) ||
+                        (p.company && p.company.toLowerCase().includes(partnerQuery.toLowerCase())) ||
+                        (p.website && p.website.toLowerCase().includes(partnerQuery.toLowerCase()));
+                      const matchStatus = partnerStatusFilter === "all" || p.status === partnerStatusFilter;
+                      const matchType = partnerTypeFilter === "all" || p.partnership_type === partnerTypeFilter;
+                      return matchQuery && matchStatus && matchType;
+                    }).map((part) => (
+                      <tr key={part.id} className="hover:bg-stone-50/50 text-xs">
+                        <td className="px-4 py-3 max-w-[200px]">
+                          <div className="font-semibold text-ink">{part.name}</div>
+                          <div className="text-[10px] text-ink/40 font-mono break-all">{part.email}</div>
+                          <div className="text-[10px] text-ink/40 font-mono">{part.phone}</div>
+                          {part.company && <div className="mt-1 text-[10px] font-medium text-ink/60">Co: {part.company}</div>}
+                          {part.website && (
+                            <a
+                              href={part.website.startsWith("http") ? part.website : `https://${part.website}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-0.5 text-[9px] text-cobalt hover:underline mt-0.5"
+                            >
+                              <ExternalLink size={8} /> {part.website}
+                            </a>
+                          )}
+                        </td>
+                        <td className="px-4 py-3 uppercase font-mono font-medium tracking-wider text-ink/75">
+                          {part.partnership_type.replace(/_/g, " ")}
+                        </td>
+                        <td className="px-4 py-3 max-w-[250px] whitespace-pre-wrap text-ink/70 leading-relaxed font-body">
+                          {part.message}
+                        </td>
+                        <td className="px-4 py-3">
+                          <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[9px] font-mono font-semibold uppercase tracking-wider ${
+                            part.status === "accepted" ? "bg-green-100 text-green-800" :
+                            part.status === "rejected" ? "bg-red-100 text-red-800" :
+                            part.status === "reviewed" ? "bg-blue-100 text-blue-800" :
+                            "bg-amber-100 text-amber-800"
+                          }`}>
+                            {part.status}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3 font-mono text-[10px] text-ink/40">
+                          {new Date(part.created_at).toLocaleDateString()}
+                        </td>
+                        <td className="px-4 py-3 text-right">
+                          <div className="flex justify-end gap-1.5">
+                            {part.status !== "reviewed" && part.status !== "accepted" && part.status !== "rejected" && (
+                              <button
+                                onClick={() => handleUpdatePartnerStatus(part.id, "reviewed")}
+                                className="rounded bg-stone-100 hover:bg-stone-200 px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-stone-700"
+                              >
+                                Review
+                              </button>
+                            )}
+                            {part.status !== "accepted" && (
+                              <button
+                                onClick={() => handleUpdatePartnerStatus(part.id, "accepted")}
+                                className="rounded bg-green-600 hover:bg-green-700 px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-white"
+                              >
+                                Accept
+                              </button>
+                            )}
+                            {part.status !== "rejected" && (
+                              <button
+                                onClick={() => handleUpdatePartnerStatus(part.id, "rejected")}
+                                className="rounded bg-red-600 hover:bg-red-700 px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-white"
+                              >
+                                Reject
+                              </button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
             </div>
           </div>
         )}
