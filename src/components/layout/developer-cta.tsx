@@ -1,24 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Mail, MessageSquare, X, ExternalLink } from "lucide-react";
-
-const Github = ({ size = 20, ...props }: { size?: number } & React.SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 24 24"
-    width={size}
-    height={size}
-    stroke="currentColor"
-    strokeWidth="2"
-    fill="none"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-  </svg>
-);
+import { Mail, MessageSquare, X, ExternalLink, Globe, Phone } from "lucide-react";
 
 export function DeveloperCTA() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,14 +11,14 @@ export function DeveloperCTA() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="group relative flex items-center gap-2 overflow-hidden rounded-full border border-hazard bg-ink px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-wider text-hazard transition-all duration-300 hover:bg-hazard hover:text-stone-50 hover:shadow-[0_0_20px_rgba(255,90,31,0.45)]"
+        className="group relative flex items-center gap-2 overflow-hidden rounded-full border border-hazard bg-ink px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-wider text-stone-50 transition-all duration-300 hover:bg-hazard hover:text-stone-50 hover:shadow-[0_0_20px_rgba(255,90,31,0.45)]"
       >
         <span className="relative flex h-2 w-2 shrink-0">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-hazard opacity-75"></span>
           <span className="relative inline-flex h-2 w-2 rounded-full bg-hazard"></span>
         </span>
         <span>TALK TO THE DEVELOPER</span>
-        <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+        <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-hazard group-hover:text-stone-50">
           ↗
         </span>
       </button>
@@ -115,7 +99,7 @@ export function DeveloperCTA() {
                   <motion.a
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    href="https://wa.me/254716672878?text=Hi%20Brian%2C%20I%20visited%20IQFITS-47%20and%20would%20love%20to%20discuss%20a%20project%21"
+                    href="https://wa.me/25479271951?text=Hi%20Brian%2C%20I%20visited%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20project%21"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between rounded-2xl border border-stone-50/5 bg-ink/45 p-4 transition-all hover:border-hazard/50 hover:bg-ink/60"
@@ -129,7 +113,55 @@ export function DeveloperCTA() {
                           Chat on WhatsApp
                         </h4>
                         <p className="font-mono text-[10px] text-stone-50/45 mt-0.5">
-                          +254 716 672 878 (Fast response)
+                          +254 792 719 51 (WhatsApp Message)
+                        </p>
+                      </div>
+                    </div>
+                    <ExternalLink size={14} className="text-stone-50/30" />
+                  </motion.a>
+
+                  {/* Phone call */}
+                  <motion.a
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="tel:+254792710951"
+                    className="flex items-center justify-between rounded-2xl border border-stone-50/5 bg-ink/45 p-4 transition-all hover:border-hazard/50 hover:bg-ink/60"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="rounded-lg bg-blue-500/10 p-2 text-blue-400">
+                        <Phone size={18} />
+                      </div>
+                      <div className="text-left">
+                        <h4 className="font-display text-xs uppercase tracking-wider text-stone-50">
+                          Direct Phone Call
+                        </h4>
+                        <p className="font-mono text-[10px] text-stone-50/45 mt-0.5">
+                          +254 792 710 951 (Call/Tel)
+                        </p>
+                      </div>
+                    </div>
+                    <ExternalLink size={14} className="text-stone-50/30" />
+                  </motion.a>
+
+                  {/* Portfolio Website */}
+                  <motion.a
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="https://sirbrian.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-2xl border border-stone-50/5 bg-ink/45 p-4 transition-all hover:border-hazard/50 hover:bg-ink/60"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="rounded-lg bg-purple-500/10 p-2 text-purple-400">
+                        <Globe size={18} />
+                      </div>
+                      <div className="text-left">
+                        <h4 className="font-display text-xs uppercase tracking-wider text-stone-50">
+                          Developer Portfolio
+                        </h4>
+                        <p className="font-mono text-[10px] text-stone-50/45 mt-0.5">
+                          sirbrian.vercel.app
                         </p>
                       </div>
                     </div>
@@ -153,31 +185,6 @@ export function DeveloperCTA() {
                         </h4>
                         <p className="font-mono text-[10px] text-stone-50/45 mt-0.5">
                           cyberlion254@gmail.com
-                        </p>
-                      </div>
-                    </div>
-                    <ExternalLink size={14} className="text-stone-50/30" />
-                  </motion.a>
-
-                  {/* GitHub */}
-                  <motion.a
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    href="https://github.com/brianmurutu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-2xl border border-stone-50/5 bg-ink/45 p-4 transition-all hover:border-hazard/50 hover:bg-ink/60"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="rounded-lg bg-stone-50/10 p-2 text-stone-50/80">
-                        <Github size={18} />
-                      </div>
-                      <div className="text-left">
-                        <h4 className="font-display text-xs uppercase tracking-wider text-stone-50">
-                          Explore GitHub Profile
-                        </h4>
-                        <p className="font-mono text-[10px] text-stone-50/45 mt-0.5">
-                          github.com/brianmurutu
                         </p>
                       </div>
                     </div>
