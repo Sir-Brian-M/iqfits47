@@ -297,3 +297,74 @@ export async function sendAdminReferralNotificationEmail(
   });
 }
 
+/**
+ * Notifies the store admin about a new partner application.
+ */
+export async function sendAdminPartnerApplicationEmail(app: {
+  name: string;
+  email: string;
+  phone: string;
+  company?: string;
+  website?: string;
+  partnershipType: string;
+  message: string;
+}): Promise<boolean> {
+  const html = `
+    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #1c1917; background-color: #fafaf9;">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <h1 style="font-size: 28px; margin: 0; letter-spacing: -0.05em; text-transform: uppercase;">IQFITS-47</h1>
+        <p style="font-size: 12px; color: #ffffff; background-color: #1c1917; padding: 6px 14px; display: inline-block; font-family: monospace; letter-spacing: 0.1em; border-radius: 9999px; text-transform: uppercase; font-weight: bold;">NEW PARTNER APPLICATION</p>
+      </div>
+
+      <div style="background-color: #ffffff; border-radius: 16px; padding: 24px; border: 1px solid #e7e5e4;">
+        <p style="margin-top: 0; font-size: 16px;">Hey Admin,</p>
+        <p>A new partnership application has been received from the portal.</p>
+
+        <h3 style="border-bottom: 2px solid #1c1917; padding-bottom: 8px; margin-top: 30px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">APPLICANT DETAILS</h3>
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.6;">
+          <tr>
+            <td style="padding: 6px 0; font-weight: bold; color: #78716c; width: 140px;">Name</td>
+            <td style="padding: 6px 0; color: #1c1917;">${app.name}</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; font-weight: bold; color: #78716c;">Email</td>
+            <td style="padding: 6px 0; color: #1c1917;"><a href="mailto:${app.email}" style="color: #ef4444; text-decoration: none;">${app.email}</a></td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; font-weight: bold; color: #78716c;">Phone</td>
+            <td style="padding: 6px 0; color: #1c1917;">${app.phone}</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; font-weight: bold; color: #78716c;">Company / Brand</td>
+            <td style="padding: 6px 0; color: #1c1917;">${app.company || "Not provided"}</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; font-weight: bold; color: #78716c;">Website / Socials</td>
+            <td style="padding: 6px 0; color: #1c1917;">
+              ${app.website ? `<a href="${app.website.startsWith("http") ? app.website : "https://" + app.website}" target="_blank" style="color: #ef4444; text-decoration: none;">${app.website}</a>` : "Not provided"}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; font-weight: bold; color: #78716c;">Partnership Type</td>
+            <td style="padding: 6px 0; color: #1c1917; font-weight: bold; text-transform: uppercase;">${app.partnershipType.replace(/_/g, " ")}</td>
+          </tr>
+        </table>
+
+        <h3 style="border-bottom: 2px solid #1c1917; padding-bottom: 8px; margin-top: 30px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">PROPOSAL / MESSAGE</h3>
+        <div style="background-color: #f5f5f4; border-radius: 12px; padding: 16px; margin-top: 10px; font-size: 14px; line-height: 1.5; color: #44403c; white-space: pre-wrap;">${app.message}</div>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px; font-size: 12px; color: #78716c;">
+        <p>IQFITS-47 Store · Nairobi, Kenya</p>
+      </div>
+    </div>
+  `;
+
+  return sendEmail({
+    to: ADMIN_EMAIL,
+    subject: `[PARTNER APPLICATION] ${app.name} - ${app.partnershipType.toUpperCase()}`,
+    html,
+  });
+}
+
+

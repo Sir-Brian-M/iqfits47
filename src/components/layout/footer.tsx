@@ -151,6 +151,7 @@ export function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-stone-50/10 pt-6 text-xs text-stone-50/40 sm:flex-row">
           <span>© {new Date().getFullYear()} IQFITS-47. All rights reserved.</span>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <Link href="/partner" className="hover:text-stone-50 transition-colors">Partner with us</Link>
             <Link href="/policies/returns" className="hover:text-stone-50 transition-colors">Returns</Link>
             <Link href="/policies/privacy" className="hover:text-stone-50 transition-colors">Privacy</Link>
             <Link href="/policies/terms" className="hover:text-stone-50 transition-colors">Terms</Link>

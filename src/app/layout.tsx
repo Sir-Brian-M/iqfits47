@@ -4,7 +4,7 @@ import "./globals.css";
 import { Footer } from "@/components/layout/footer";
 import { ClientWrapper } from "@/components/layout/client-wrapper";
 import { StructuredData } from "@/components/layout/structured-data";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const display = Anton({
   subsets: ["latin"],
