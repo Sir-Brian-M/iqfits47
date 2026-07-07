@@ -54,11 +54,27 @@ function getEmailHeader(title: string, subtitle: string): string {
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Space Grotesk', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #15151A; background-color: #F4F2ED;">
       <!-- Header Block -->
       <div style="background-color: #15151A; padding: 32px 24px; text-align: center; border-radius: 20px 20px 0 0; border-bottom: 3px solid #FF5A1F;">
-        <img src="https://iqfits47.store/icon.png" width="56" height="56" style="display: block; margin: 0 auto 12px auto; border-radius: 12px;" alt="IQFITS-47 Logo" />
-        <h1 style="font-size: 32px; margin: 0; letter-spacing: 0.05em; text-transform: uppercase; color: #F4F2ED; line-height: 1; font-weight: 900;">
-          IQFITS-<span style="color: #FF5A1F;">47</span>
-        </h1>
-        <p style="font-size: 9px; color: #DFDBCF; margin: 6px 0 0 0; font-family: monospace; letter-spacing: 0.25em; font-weight: bold; text-transform: uppercase;">
+        <!-- Real logo from header/footer -->
+        <table align="center" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto 4px auto; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 0; vertical-align: middle;">
+              <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; transform: skewX(-12deg); -webkit-transform: skewX(-12deg);">
+                <tr>
+                  <td style="width: 4px; height: 20px; background-color: #FF5A1F; padding: 0;"></td>
+                  <td style="width: 4px; padding: 0;"></td>
+                  <td style="width: 4px; height: 20px; background-color: #FF5A1F; padding: 0;"></td>
+                </tr>
+              </table>
+            </td>
+            <td style="width: 8px; padding: 0;"></td>
+            <td style="padding: 0; vertical-align: middle;">
+              <h1 style="font-size: 32px; margin: 0; letter-spacing: -0.05em; text-transform: uppercase; color: #F4F2ED; line-height: 1; font-weight: 900; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+                IQFITS-<span style="color: #FF5A1F;">47</span>
+              </h1>
+            </td>
+          </tr>
+        </table>
+        <p style="font-size: 8px; color: #DFDBCF; margin: 6px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; letter-spacing: 0.18em; font-weight: bold; text-transform: uppercase; text-align: center;">
           KICKS &bull; STREETWEAR &bull; DESIGNER FITS
         </p>
         <div style="display: inline-block; margin-top: 16px; background-color: #FF5A1F; color: #ffffff; padding: 6px 16px; font-family: monospace; font-size: 11px; letter-spacing: 0.1em; border-radius: 9999px; text-transform: uppercase; font-weight: bold;">

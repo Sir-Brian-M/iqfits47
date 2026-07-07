@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer, isSupabaseServerConfigured } from "@/lib/supabase/server";
 import { sendPartnerConfirmationEmail } from "@/lib/mail";
-import { sendPartnerConfirmationSMS } from "@/lib/sms";
 
 export async function POST(req: NextRequest) {
   try {
@@ -77,20 +76,8 @@ export async function POST(req: NextRequest) {
         });
     }
 
-    // 3. Trigger confirmation SMS to partner
-    if (phone) {
-      smsSent = await sendPartnerConfirmationSMS(name, phone, partnershipType)
-        .then((res) => {
-          if (!res) {
-            console.error("TextSMS API returned false for partner confirmation SMS.");
-          }
-          return res;
-        })
-        .catch((err) => {
-          console.error("Failed to send partner confirmation SMS:", err);
-          return false;
-        });
-    }
+    // 3. Trigger confirmation SMS to partner has been disabled per request.
+    // Partner will only receive SMS once approved by the admin in the dashboard.
 
     if (!dbSaved && !emailSent && !smsSent) {
       return NextResponse.json(
