@@ -122,20 +122,19 @@ export function Navbar() {
         </button>
 
         <Link href="/" className="flex flex-col items-center justify-center gap-1 group text-center">
-          {/* Double hazard orange diagonal slashes prefix */}
-          <div className="flex gap-1 -skew-x-12 shrink-0">
-            <div className="h-4 w-1 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
-            <div className="h-4 w-1 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
-          </div>
-          
-          <div className="flex flex-col items-center justify-center leading-none">
+          <div className="flex items-center gap-2">
+            {/* Double hazard orange diagonal slashes prefix */}
+            <div className="flex gap-1 -skew-x-12 shrink-0">
+              <div className="h-5 w-1 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
+              <div className="h-5 w-1 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
+            </div>
             <div className="font-display text-[32px] uppercase tracking-tighter text-ink leading-none">
               IQFITS-<span className="text-hazard">47</span>
             </div>
-            <span className="font-body text-[8px] tracking-[0.18em] uppercase text-ink/85 mt-1.5 font-bold">
-              KICKS • STREETWEAR • DESIGNER FITS
-            </span>
           </div>
+          <span className="font-body text-[8px] tracking-[0.18em] uppercase text-ink/85 mt-0.5 font-bold">
+            KICKS • STREETWEAR • DESIGNER FITS
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 font-display text-sm uppercase tracking-wide lg:flex">

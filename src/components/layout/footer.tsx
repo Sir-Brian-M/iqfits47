@@ -10,21 +10,20 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="flex flex-col items-start gap-1.5 group">
-              {/* Double hazard orange diagonal slashes prefix */}
-              <div className="flex gap-1.5 -skew-x-12 shrink-0">
-                <div className="h-5 w-1.5 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
-                <div className="h-5 w-1.5 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
-              </div>
-              
-              <div className="flex flex-col leading-none">
+            <div className="flex flex-col items-start gap-1 group">
+              <div className="flex items-center gap-2">
+                {/* Double hazard orange diagonal slashes prefix */}
+                <div className="flex gap-1.5 -skew-x-12 shrink-0">
+                  <div className="h-6 w-1.5 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
+                  <div className="h-6 w-1.5 bg-hazard transition-all duration-300 group-hover:scale-y-110" />
+                </div>
                 <div className="font-display text-[38px] uppercase tracking-tighter text-stone-50 leading-none">
                   IQFITS-<span className="text-hazard">47</span>
                 </div>
-                <span className="font-body text-[10px] tracking-[0.18em] uppercase text-stone-50/85 mt-1.5 font-bold">
-                  KICKS • STREETWEAR • DESIGNER FITS
-                </span>
               </div>
+              <span className="font-body text-[10px] tracking-[0.18em] uppercase text-stone-50/85 mt-0.5 font-bold">
+                KICKS • STREETWEAR • DESIGNER FITS
+              </span>
             </div>
             <p className="mt-4 max-w-sm text-sm text-stone-50/60">
               Authentic kicks, designer apparel and accessories, sourced for
