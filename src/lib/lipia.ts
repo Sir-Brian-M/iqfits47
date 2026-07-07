@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Lipia Online payment integration
  * ---------------------------------
  * Docs: https://lipia-online-docs.vercel.app/
@@ -58,7 +58,7 @@ export async function initiateStkPush(
 ): Promise<StkPushResult> {
   assertConfigured();
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://iqfits-47.top";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://iqfits47.store";
   const callbackUrl = `${siteUrl}/api/payments/callback`;
 
   const res = await fetch(`${LIPIA_BASE_URL}/payments/stk-push`, {

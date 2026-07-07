@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,7 +12,7 @@ import type { Rank } from "@/lib/affiliate";
 import { ReferralNetworkViz } from "@/components/home/referral-network-viz";
 
 // ── Constants ────────────────────────────────────────────────────────────────
-const SITE_URL = "https://iqfits-47.top";
+const SITE_URL = "https://iqfits47.store";
 
 const TIER_META: Record<string, { icon: React.ReactNode; gradient: string; bg: string; text: string }> = {
   none:     { icon: <Star size={14} />,   gradient: "from-stone-400 to-stone-500",   bg: "bg-stone-100",   text: "text-stone-500" },

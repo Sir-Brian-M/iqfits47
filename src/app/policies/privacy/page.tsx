@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -71,7 +71,7 @@ export default function PrivacyPolicyPage() {
       <section className="space-y-3">
         <h3 className="font-display text-lg uppercase tracking-tight text-ink">5. Data Retention & Your Rights</h3>
         <p>
-          We retain order history details to facilitate return windows and order lookups. You have the right to request access to the personal data we hold about you, or request that we delete your contact record from our active marketing lists. To make a request, contact us at <strong>privacy@iqfits-47.top</strong>.
+          We retain order history details to facilitate return windows and order lookups. You have the right to request access to the personal data we hold about you, or request that we delete your contact record from our active marketing lists. To make a request, contact us at <strong>privacy@iqfits47.store</strong>.
         </p>
       </section>
     </>

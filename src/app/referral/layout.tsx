@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Refer & Earn — IQFITS-47",
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "Refer & Earn — IQFITS-47",
     description:
       "Share IQFITS-47 with your crew. They get 5% off kicks and streetwear. You earn cash credits.",
-    url: "https://iqfits-47.top/referral",
+    url: "https://iqfits47.store/referral",
     siteName: "IQFITS-47",
   },
 };
