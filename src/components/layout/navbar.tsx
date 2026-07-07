@@ -121,58 +121,21 @@ export function Navbar() {
           <Menu size={22} />
         </button>
 
-        <Link href="/" className="flex items-center gap-2.5 font-display text-2xl tracking-tight">
-          {/* Jay Fletcher Style Geometric Sneaker Logo */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 32 24"
-            width="32"
-            height="24"
-            aria-hidden="true"
-            className="shrink-0 text-ink"
-          >
-            {/* Sawtooth Outsole */}
-            <path
-              d="M 2 21 L 4 23 L 6 21 L 8 23 L 10 21 L 12 23 L 14 21 L 16 23 L 18 21 L 20 23 L 22 21 L 24 23 L 26 21 L 28 23 L 30 21"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* Midsole */}
-            <path
-              d="M 2 18.5 L 30 18.5 C 30.5 18.5, 30.5 21, 29.5 21 L 2.5 21 C 1.5 21, 1.5 18.5, 2 18.5 Z"
-              fill="#ffffff"
-              stroke="currentColor"
-              strokeWidth="1.2"
-            />
-            {/* Midsole Accent Stripe (Orange) */}
-            <path
-              d="M 12 20 L 28 20"
-              stroke="#FF5A1F"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-            />
-            {/* Upper Body (Base layer) */}
-            <path
-              d="M 2.5 18.5 C 2.5 15.5, 4 14.5, 5.5 14.5 L 13 11 L 16.5 6 C 17.5 4.5, 19 4.5, 20 6 L 21.5 8.5 C 22.5 7.5, 24 7.5, 25 8.5 L 26.5 10 C 28 11, 28.5 12.5, 28.5 14.5 L 28.5 18.5 Z"
-              fill="currentColor"
-            />
-            {/* Classic Swoosh */}
-            <path
-              d="M 8.5 16 C 13 13, 21 13, 27 10 C 27 10, 27.5 11, 26.5 12.5 C 21.5 15, 14 17.5, 9.5 17.5 Z"
-              fill="#FF5A1F"
-            />
-            {/* Heel Tab (Orange) */}
-            <path
-              d="M 25 8.5 C 26 7.5, 27 8.5, 27 9.5 L 25.5 10.5 Z"
-              fill="#FF5A1F"
-            />
-            {/* Laces */}
-            <line x1="12" y1="12" x2="15" y2="10" stroke="#D4FF3D" strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="14" y1="10.2" x2="17" y2="8.2" stroke="#D4FF3D" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-          IQFITS-<span className="text-hazard">47</span>
+        <Link href="/" className="flex items-center gap-3 group">
+          {/* Double neon-lime diagonal slashes prefix */}
+          <div className="flex gap-1 -skew-x-12 shrink-0">
+            <div className="h-5 w-1 bg-lime transition-all duration-300 group-hover:scale-y-110" />
+            <div className="h-5 w-1 bg-lime transition-all duration-300 group-hover:scale-y-110" />
+          </div>
+          
+          <div className="flex flex-col justify-center leading-none">
+            <div className="font-display text-2xl uppercase tracking-tighter text-ink">
+              IQFITS-<span className="text-hazard">47</span>
+            </div>
+            <span className="font-body text-[8px] tracking-[0.18em] uppercase text-ink/50 mt-0.5 font-medium">
+              Kicks • Streetwear • Designer Fits
+            </span>
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-8 font-display text-sm uppercase tracking-wide lg:flex">
