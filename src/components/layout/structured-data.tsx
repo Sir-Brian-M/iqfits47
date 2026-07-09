@@ -44,7 +44,7 @@ export function StructuredData() {
       addressCountry: "KE",
     },
     sameAs: [
-      "https://www.instagram.com/iqfits47",
+      "https://www.instagram.com/47.iqfits._",
       "https://www.tiktok.com/@iqfits47",
       "https://www.facebook.com/iqfits47",
       "https://twitter.com/iqfits47",

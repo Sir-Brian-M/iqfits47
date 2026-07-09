@@ -94,7 +94,7 @@ function getEmailFooter(): string {
         <!-- Social Links Section -->
         <div style="margin-bottom: 24px;">
           <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #7c7c8c; margin-bottom: 12px; font-weight: bold;">Connect With Us</p>
-          <a href="https://www.instagram.com/iqfits.47._/" target="_blank" style="display: inline-block; background-color: #15151A; color: #F4F2ED; padding: 10px 20px; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 12px; margin: 0 6px; border: 1px solid rgba(255, 90, 31, 0.2); letter-spacing: 0.02em;">
+          <a href="https://www.instagram.com/47.iqfits._/" target="_blank" style="display: inline-block; background-color: #15151A; color: #F4F2ED; padding: 10px 20px; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 12px; margin: 0 6px; border: 1px solid rgba(255, 90, 31, 0.2); letter-spacing: 0.02em;">
             Instagram
           </a>
           <a href="https://chat.whatsapp.com/HKekz4fQhR8AQudjaP4qeH" target="_blank" style="display: inline-block; background-color: #15151A; color: #F4F2ED; padding: 10px 20px; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 12px; margin: 0 6px; border: 1px solid rgba(255, 90, 31, 0.2); letter-spacing: 0.02em;">

@@ -32,13 +32,13 @@ export function Footer() {
               every order is trackable.
             </p>
             <a
-              href="https://www.instagram.com/iqfits.47._/"
+              href="https://www.instagram.com/47.iqfits._/"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-2 rounded-full border border-stone-50/20 px-4 py-2 text-sm font-medium transition-colors hover:border-hazard hover:text-hazard"
             >
               <InstagramIcon size={16} />
-              @iqfits.47._
+              @47.iqfits._
             </a>
           </div>
 

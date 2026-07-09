@@ -71,7 +71,7 @@ export async function initiateStkPush(
       phone_number: params.phone,
       amount: params.amount,
       external_reference: params.accountReference,
-      callback_url: callbackUrl,
+      ...(callbackUrl.startsWith("https://") ? { callback_url: callbackUrl } : {}),
       metadata: {
         transaction_desc: params.transactionDesc ?? "IQFITS-47 order",
       }

@@ -13,13 +13,13 @@ export function InstagramCta() {
           new drops before they hit the shop.
         </p>
         <a
-          href="https://www.instagram.com/iqfits.47._/"
+          href="https://www.instagram.com/47.iqfits._/"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-6 inline-flex items-center gap-2 rounded-full bg-hazard px-7 py-3.5 font-display text-sm uppercase tracking-wide text-white transition-transform hover:scale-105"
         >
           <InstagramIcon size={16} />
-          @iqfits.47._
+          @47.iqfits._
         </a>
       </div>
     </section>
