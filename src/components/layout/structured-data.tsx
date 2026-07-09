@@ -250,7 +250,7 @@ export function StructuredData() {
         name: "How fast is delivery in Nairobi?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Orders within Nairobi and Kiambu are delivered within 1–2 business days. Nationwide delivery across Kenya takes 2–4 business days. Free delivery on orders over KES 15,000 within Nairobi and Kiambu.",
+          text: "Orders within Nairobi and Kiambu are delivered within 1–2 business days. Nationwide delivery across Kenya takes 2–4 business days. Free delivery on all orders over KES 15,000.",
         },
       },
       {

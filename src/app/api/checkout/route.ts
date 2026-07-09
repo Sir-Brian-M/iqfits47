@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createOrder, attachTransactionReference } from "@/lib/orders";
 import { initiateStkPush } from "@/lib/lipia";
 import { normalizeMpesaPhone } from "@/lib/utils";
@@ -6,8 +6,8 @@ import { OrderItem } from "@/lib/types";
 import { supabaseServer } from "@/lib/supabase/server";
 import { lookupAffiliateByCode, recordReferralEvent } from "@/lib/affiliate";
 
-const DELIVERY_FEE_NAIROBI = 300;
-const DELIVERY_FEE_OTHER = 500;
+const DELIVERY_FEE_NAIROBI = 200;
+const DELIVERY_FEE_OTHER = 350;
 const FREE_DELIVERY_THRESHOLD = 15000;
 const REFERRAL_DISCOUNT_PERCENT = 5; // 5% off for referred customers
 
@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
         town: string;
         addressLine: string;
         notes?: string;
+        deliveryOption?: "nairobi" | "other";
       };
       promoCode?: string;
       referralCode?: string;
@@ -51,7 +52,12 @@ export async function POST(req: NextRequest) {
     const deliveryFee =
       subtotal >= FREE_DELIVERY_THRESHOLD
         ? 0
-        : delivery.county.toLowerCase().includes("nairobi") ||
+        : delivery.deliveryOption === "nairobi"
+        ? DELIVERY_FEE_NAIROBI
+        : delivery.deliveryOption === "other"
+        ? DELIVERY_FEE_OTHER
+        : // Fallback if no deliveryOption is provided
+        delivery.county.toLowerCase().includes("nairobi") ||
           delivery.county.toLowerCase().includes("kiambu")
         ? DELIVERY_FEE_NAIROBI
         : DELIVERY_FEE_OTHER;

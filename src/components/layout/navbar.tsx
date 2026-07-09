@@ -40,7 +40,7 @@ export function Navbar() {
   const wishlistCount = useFeatures((s) => s.wishlist.length);
 
   const [announcements, setAnnouncements] = useState<string[]>([
-    "FREE DELIVERY IN NAIROBI & KIAMBU ON ORDERS OVER KES 15,000",
+    "FREE DELIVERY ON ALL ORDERS OVER KES 15,000",
     "PAY SECURELY WITH M-PESA",
     "NEW DROPS EVERY FRIDAY",
   ]);

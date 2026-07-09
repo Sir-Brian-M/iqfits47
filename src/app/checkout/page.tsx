@@ -37,6 +37,7 @@ export default function CheckoutPage() {
     town: "",
     addressLine: "",
     notes: "",
+    deliveryOption: "" as "nairobi" | "other" | "",
   });
 
   // Referral code (captured from ?ref= query param via localStorage)
@@ -111,7 +112,13 @@ export default function CheckoutPage() {
   }
 
   const deliveryFeeEstimate =
-    subtotal >= 15000 ? 0 : /nairobi|kiambu/i.test(form.county) ? 300 : 500;
+    subtotal >= 15000
+      ? 0
+      : form.deliveryOption === "nairobi"
+      ? 200
+      : form.deliveryOption === "other"
+      ? 350
+      : 0;
   const discountAmount = appliedDiscount ? Math.round((subtotal * appliedDiscount.percent) / 100) : 0;
   // Referral gives 5% — only if no promo code is active
   const referralDiscountAmount =
@@ -133,6 +140,10 @@ export default function CheckoutPage() {
     }
     if (!form.fullName || !form.addressLine || !form.town) {
       setErrorMsg("Please fill in all required fields.");
+      return;
+    }
+    if (!form.deliveryOption) {
+      setErrorMsg("Please select a delivery option.");
       return;
     }
 
@@ -287,6 +298,42 @@ export default function CheckoutPage() {
                 </Field>
               </div>
 
+              <Field label="Delivery Option" required>
+                <div className="grid gap-3 sm:grid-cols-2 mt-2">
+                  <button
+                    type="button"
+                    onClick={() => updateField("deliveryOption", "nairobi")}
+                    className={`flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition-all ${
+                      form.deliveryOption === "nairobi"
+                        ? "border-hazard bg-hazard/5 ring-1 ring-hazard"
+                        : "border-ink/15 hover:border-ink/30 bg-transparent"
+                    }`}
+                  >
+                    <span className="font-semibold text-sm">Nairobi & neighbouring counties</span>
+                    <span className="text-xs text-ink/60">Kiambu, Machakos, Kajiado</span>
+                    <span className="mt-2 font-mono text-sm font-bold text-hazard">
+                      {subtotal >= 15000 ? "Free" : "KES 200"}
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => updateField("deliveryOption", "other")}
+                    className={`flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition-all ${
+                      form.deliveryOption === "other"
+                        ? "border-hazard bg-hazard/5 ring-1 ring-hazard"
+                        : "border-ink/15 hover:border-ink/30 bg-transparent"
+                    }`}
+                  >
+                    <span className="font-semibold text-sm">Rest of Kenya</span>
+                    <span className="text-xs text-ink/60">All other counties</span>
+                    <span className="mt-2 font-mono text-sm font-bold text-hazard">
+                      {subtotal >= 15000 ? "Free" : "KES 350"}
+                    </span>
+                  </button>
+                </div>
+              </Field>
+
               <Field label="Delivery address" required>
                 <input
                   value={form.addressLine}
@@ -414,7 +461,13 @@ export default function CheckoutPage() {
                 )}
                 <div className="flex justify-between text-ink/60">
                   <span>Delivery</span>
-                  <span>{deliveryFeeEstimate === 0 ? "Free" : formatKES(deliveryFeeEstimate)}</span>
+                  <span>
+                    {form.deliveryOption === ""
+                      ? "Select option"
+                      : deliveryFeeEstimate === 0
+                      ? "Free"
+                      : formatKES(deliveryFeeEstimate)}
+                  </span>
                 </div>
                 <div className="flex justify-between text-base font-semibold text-ink">
                   <span>Total</span>
