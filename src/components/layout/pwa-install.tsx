@@ -44,15 +44,20 @@ export function PWAInstall() {
   }, []);
 
   const handleInstallClick = async () => {
-    if (typeof navigator !== "undefined") {
-      const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
-      if (/android/i.test(userAgent)) {
-        await handleAndroidInstall();
-      } else {
-        handleiOSInstall();
-      }
+    if (deferredPrompt) {
+      await handleAndroidInstall();
     } else {
-      setIsModalOpen(true);
+      if (typeof navigator !== "undefined") {
+        const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+        if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) {
+          handleiOSInstall();
+        } else {
+          setActiveTab("android");
+          setIsModalOpen(true);
+        }
+      } else {
+        setIsModalOpen(true);
+      }
     }
   };
 
