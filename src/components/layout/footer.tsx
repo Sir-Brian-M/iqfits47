@@ -32,12 +32,12 @@ export function Footer() {
               Nairobi and shipped anywhere in Kenya. Every drop is numbered,
               every order is trackable.
             </p>
-            <div className="mt-5 flex flex-wrap items-center gap-3">
+            <div className="mt-5 flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <a
                 href="https://www.instagram.com/47.iqfits._/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-stone-50/20 px-4 text-sm font-medium transition-colors hover:border-hazard hover:text-hazard h-10 shrink-0"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-stone-50/20 px-4 text-sm font-medium transition-all hover:border-hazard hover:text-hazard h-10 w-full max-w-[220px] shrink-0"
               >
                 <InstagramIcon size={16} />
                 @47.iqfits._
