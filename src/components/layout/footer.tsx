@@ -108,9 +108,6 @@ export function Footer() {
               <li className="pt-3">
                 <PWAInstall />
               </li>
-              <li className="pt-1 font-mono text-xs text-stone-50/50">
-                Payments secured via M-Pesa STK Push
-              </li>
             </ul>
           </div>
         </div>
