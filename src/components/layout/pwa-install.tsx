@@ -84,30 +84,27 @@ export function PWAInstall() {
 
   return (
     <>
-      <div className="flex flex-col gap-2.5">
-        <span className="font-mono text-xs text-stone-50/50 uppercase tracking-widest">Download our App</span>
-        <button
-          onClick={handleInstallClick}
-          className="inline-flex items-center justify-between gap-3.5 rounded-lg bg-black px-4 text-stone-50 border border-stone-800 transition-all hover:bg-stone-900 hover:border-stone-700 hover:text-white w-full max-w-[220px] h-10 shrink-0"
-        >
-          {/* Apple Logo SVG */}
-          <svg viewBox="0 0 384 512" className="h-4 w-4 fill-current text-white shrink-0">
-            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-48.7-22.9-76.9-22.4-36.6.6-70.2 21.6-89 53.5-38.5 66.4-9.9 161.9 27.2 216.7 18.2 26.2 39.9 55.4 68.2 54.4 27.1-1 37.3-17.4 69.8-17.4 32.3 0 42 17.4 70.3 16.8 28.8-.6 48-26.3 66.2-52.9 21-30.7 29.7-60.4 30.2-61.9-1.2-.5-60.2-22.9-60.8-91.2zM270.3 84.4c21.6-26 36-62.2 32-98.4-31.2 1.3-69.2 20.7-91.5 46.9-19.5 22.8-36.6 60-32.6 95.5 34.5 2.7 70.2-18 92.1-44z" />
-          </svg>
-          
-          <span className="text-[11px] font-semibold uppercase tracking-wider font-mono text-center flex-1">
-            Download our app
-          </span>
+      <button
+        onClick={handleInstallClick}
+        className="inline-flex items-center justify-between gap-3.5 rounded-lg bg-black px-4 text-stone-50 border border-stone-800 transition-all hover:bg-stone-900 hover:border-stone-700 hover:text-white w-full max-w-[220px] h-10 shrink-0"
+      >
+        {/* Apple Logo SVG */}
+        <svg viewBox="0 0 384 512" className="h-4 w-4 fill-current text-white shrink-0">
+          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-48.7-22.9-76.9-22.4-36.6.6-70.2 21.6-89 53.5-38.5 66.4-9.9 161.9 27.2 216.7 18.2 26.2 39.9 55.4 68.2 54.4 27.1-1 37.3-17.4 69.8-17.4 32.3 0 42 17.4 70.3 16.8 28.8-.6 48-26.3 66.2-52.9 21-30.7 29.7-60.4 30.2-61.9-1.2-.5-60.2-22.9-60.8-91.2zM270.3 84.4c21.6-26 36-62.2 32-98.4-31.2 1.3-69.2 20.7-91.5 46.9-19.5 22.8-36.6 60-32.6 95.5 34.5 2.7 70.2-18 92.1-44z" />
+        </svg>
+        
+        <span className="text-[11px] font-semibold uppercase tracking-wider font-mono text-center flex-1">
+          Download our app
+        </span>
 
-          {/* Play Store Logo SVG */}
-          <svg viewBox="0 0 360 360" className="h-4 w-4 shrink-0">
-            <path fill="#2196F3" d="M40.9 18.2C34.1 25.1 30 35.8 30 49.3v261.4c0 13.5 4.1 24.2 10.9 31.1L46 347 210.8 182.2V177.8L46 13 40.9 18.2z" />
-            <path fill="#4CAF50" d="M265.8 237.2l-55-55v-4.4l55-55 5.2 3c12.2 7 21.6 19.3 21.6 34.2s-9.4 27.2-21.6 34.2l-5.2 3z" />
-            <path fill="#F44336" d="M210.8 177.8L46 13C52.8 6.1 63.6 2 77.1 2c5.9 0 11.8 1.5 17.2 4.6l171.5 98.1 55 55-110 18.1z" />
-            <path fill="#FFEB3B" d="M210.8 182.2l-110 110-6.2-3.6L46 347c6.8 6.9 17.6 11 31.1 11 5.9 0 11.8-1.5 17.2-4.6l171.5-98.1 55-55-110 18.1z" />
-          </svg>
-        </button>
-      </div>
+        {/* Play Store Logo SVG */}
+        <svg viewBox="0 0 360 360" className="h-4 w-4 shrink-0">
+          <path fill="#2196F3" d="M40.9 18.2C34.1 25.1 30 35.8 30 49.3v261.4c0 13.5 4.1 24.2 10.9 31.1L46 347 210.8 182.2V177.8L46 13 40.9 18.2z" />
+          <path fill="#4CAF50" d="M265.8 237.2l-55-55v-4.4l55-55 5.2 3c12.2 7 21.6 19.3 21.6 34.2s-9.4 27.2-21.6 34.2l-5.2 3z" />
+          <path fill="#F44336" d="M210.8 177.8L46 13C52.8 6.1 63.6 2 77.1 2c5.9 0 11.8 1.5 17.2 4.6l171.5 98.1 55 55-110 18.1z" />
+          <path fill="#FFEB3B" d="M210.8 182.2l-110 110-6.2-3.6L46 347c6.8 6.9 17.6 11 31.1 11 5.9 0 11.8-1.5 17.2-4.6l171.5-98.1 55-55-110 18.1z" />
+        </svg>
+      </button>
 
       <AnimatePresence>
         {isModalOpen && (
